@@ -9,6 +9,7 @@ import Edu.icet.Entity.UserEntity;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class Userboimpl implements userbo {
 
@@ -35,6 +36,12 @@ public class Userboimpl implements userbo {
         return false;
     }
 
+    @Override
+    public void searchUser(String username, String password) {
+        usercalldao.getPasswordByUsername(username);
+
+    }
+
     private String passwordHash(String password){
         try{
             MessageDigest md = MessageDigest.getInstance("SHA");
@@ -50,5 +57,9 @@ public class Userboimpl implements userbo {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void passwordcheck(List list){
+
     }
 }
