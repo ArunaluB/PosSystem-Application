@@ -5,6 +5,7 @@ import Edu.icet.DAO.Custom.Userdao;
 import Edu.icet.DAO.Custom.impl.Userdaoimpl;
 import Edu.icet.DTO.UserDto;
 import Edu.icet.Entity.UserEntity;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class Userboimpl implements userbo {
 
-    private int   count =1;
+    private int count = 1;
     private Userdao usercalldao = new Userdaoimpl();
 
     @Override
@@ -22,7 +23,7 @@ public class Userboimpl implements userbo {
         String usergetpassword = dto.getPassword();
         String Encrippassword = passwordHash(usergetpassword);
         UserEntity obj = new UserEntity();
-        obj.setId(String.valueOf(count));
+        obj.setId((long)0);
         obj.setName(dto.getName());
         obj.setEmail(dto.getEmail());
         obj.setType(dto.getType());
@@ -38,18 +39,20 @@ public class Userboimpl implements userbo {
 
     @Override
     public void searchUser(String username, String password) {
-        usercalldao.getPasswordByUsername(username);
+        String hashpass = usercalldao.getPasswordByUsername(username);
+
+
 
     }
 
-    private String passwordHash(String password){
-        try{
+    private String passwordHash(String password) {
+        try {
             MessageDigest md = MessageDigest.getInstance("SHA");
             md.update(password.getBytes());
-            byte[] rbt= md.digest();
-            StringBuilder sb =new StringBuilder();
-            for(byte b:rbt) {
-                sb.append(String.format("%02x" , b));
+            byte[] rbt = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for (byte b : rbt) {
+                sb.append(String.format("%02x", b));
             }
             System.out.println(sb);
             return sb.toString();
@@ -59,7 +62,7 @@ public class Userboimpl implements userbo {
         }
     }
 
-    public void passwordcheck(List list){
+    public void passwordcheck(List list) {
 
     }
 }

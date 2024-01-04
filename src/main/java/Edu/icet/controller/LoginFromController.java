@@ -1,15 +1,13 @@
 package Edu.icet.controller;
 
-import Edu.icet.BO.custom.impl.Userboimpl;
-import Edu.icet.BO.custom.userbo;
-import Edu.icet.DTO.UserDto;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
 
 public class LoginFromController {
-
-
 
     @FXML
     private JFXTextField textEmail;
@@ -17,20 +15,17 @@ public class LoginFromController {
     @FXML
     private JFXTextField txtpassword;
 
+    @FXML
+    private TextField txtpass;
 
-    public void loginOnAction(ActionEvent actionEvent) {
-        String Email = textEmail.getText();
-        String password = txtpassword.getText();
+    @FXML
+    private Label errorlabel;
 
-        userbo userbocall = new Userboimpl();
-        userbocall.searchUser(Email, password);
 
+
+    public void StartOnAction(ActionEvent actionEvent) {
     }
 
-
-    public void fogetpasswordonAction(ActionEvent actionEvent) {
+    public void fogetOnAction(ActionEvent actionEvent) {
     }
-
-
-
 }
