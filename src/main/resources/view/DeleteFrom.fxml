@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="223.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Edu.icet.controller.DeleteFromControler">
+   <children>
+      <Label layoutX="179.0" layoutY="-48.0" text="Label" />
+      <Label layoutX="-173.0" layoutY="-144.0" text="Label" />
+      <Label alignment="CENTER" layoutX="160.0" layoutY="30.0" prefHeight="17.0" prefWidth="155.0" text="DeleteUserAccount" textFill="#1b1b1b">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="87.0" prefHeight="17.0" prefWidth="137.0" text="E-mail Address" textFill="#111111" />
+      <TextField fx:id="Emalitxt" layoutX="48.0" layoutY="112.0" prefHeight="25.0" prefWidth="380.0" promptText="EmailAddress" />
+      <Button fx:id="deleteOnAction" layoutX="165.0" layoutY="166.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: Red; -fx-background-radius: 10;" text="Delete" textFill="#f8f5f5" />
+   </children>
+</AnchorPane>

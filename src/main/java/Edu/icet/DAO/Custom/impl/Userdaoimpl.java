@@ -52,9 +52,38 @@ public class Userdaoimpl implements Userdao {
 
 
     @Override
-    public boolean delete(String value) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean delete(String email) throws SQLException, ClassNotFoundException {
+
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+
+            Query<UserEntity> query = session.createQuery("FROM UserEntity WHERE email = :username", UserEntity.class);
+            query.setParameter("username", email);
+
+            UserEntity userEntity = query.uniqueResult();
+            if (userEntity != null) {
+                session.delete(userEntity);
+            }
+
+            transaction.commit();
+
+            return true;
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace(); // Handle the exception as needed
+            return false;
+
+        } finally {
+            session.close();
+        }
     }
+
 
     @Override
     public List getAll() throws SQLException, ClassNotFoundException {
