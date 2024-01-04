@@ -27,8 +27,29 @@ public class Userdaoimpl implements Userdao {
 
     @Override
     public boolean update(Object entity) throws SQLException, ClassNotFoundException {
-        return false;
+
+        try (Session session = HibernateUtil.getSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            String userEmail = ((UserEntity) entity).getEmail();
+            UserEntity user = session.byNaturalId(UserEntity.class).using("email", userEmail).load();
+
+            if (user != null) {
+                // Update only if the user with the given email exists
+                user.setPassword(((UserEntity) entity).getPassword());
+                session.saveOrUpdate(user);
+            }
+
+            transaction.commit();
+        } catch (Exception e) {
+            // Handle exceptions appropriately (log or throw a custom exception)
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
+
 
     @Override
     public boolean delete(String value) throws SQLException, ClassNotFoundException {
@@ -100,6 +121,44 @@ public class Userdaoimpl implements Userdao {
             session.close();
         }
     }
+    public boolean updatePasswordByUsername(String username, String newPassword) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+
+            // Use HQL to create a query to retrieve the user by username
+            Query<UserEntity> query = session.createQuery("FROM UserEntity WHERE Email = :username", UserEntity.class);
+            query.setParameter("username", username);
+            UserEntity userEntity = query.uniqueResult();
+
+            // Check if userEntity is not null before updating the password
+            if (userEntity != null) {
+                // Update the password
+                userEntity.setPassword(newPassword);
+
+                // Save the updated entity
+                session.update(userEntity);
+
+                transaction.commit();
+                return true; // Password update successful
+            }
+
+            transaction.commit();
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace(); // Handle the exception appropriately in your application
+        } finally {
+            session.close();
+        }
+
+        return false; // Password update failed
+    }
+
 
 }
 

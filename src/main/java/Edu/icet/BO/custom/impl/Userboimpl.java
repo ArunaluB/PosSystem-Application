@@ -17,10 +17,12 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 public class Userboimpl implements userbo {
 
    static String OTPConvert;
+   static String Email;
 
     int random;
     int OTP;
@@ -48,8 +50,14 @@ public class Userboimpl implements userbo {
     }
 
     @Override
-    public boolean updateCustomer(UserDto dto) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean updateCustomer(String Email, String password) throws SQLException, ClassNotFoundException {
+        UserEntity obj = new UserEntity();
+        obj.setId((long)0);
+        obj.setName("Namal");
+        obj.setEmail(Email);
+        obj.setPassword(password);
+        obj.setType("Admin");
+        return usercalldao.update(obj);
     }
 
 
@@ -68,7 +76,7 @@ public class Userboimpl implements userbo {
 
     @Override
     public void searchUserEmailCheck(String userEmail) throws MessagingException {
-        String Email =usercalldao.getSearchByUsername(userEmail);
+        Email =usercalldao.getSearchByUsername(userEmail);
         System.out.println(Email);
         random = new Random().nextInt(9000);
         OTP = 1000+random;
@@ -87,11 +95,24 @@ public class Userboimpl implements userbo {
         System.out.println(otp);
 
         if(!OTPConvert.equals(otp)) {
+            System.out.println("meka thama yana aka"+Email);
          return false   ;
         }
 
-
+        System.out.println("meka thama yana aka"+Email);
         return true;
+    }
+
+
+    public boolean validatepassword(String Npass, String CPass) throws SQLException, ClassNotFoundException {
+        if(isValidPassword(Npass)) {
+            if(Npass.equals(CPass)) {
+                System.out.println("password 2 kama harii");
+                usercalldao.updatePasswordByUsername(Email,Npass);
+                return true;
+            }
+        }
+        return false;
     }
 
     private void setOtp(int num){
@@ -118,8 +139,11 @@ public class Userboimpl implements userbo {
         }
     }
 
-    public void passwordcheck(List list) {
-
+    private boolean isValidPassword(String password) {
+        // Password must be at least 8 characters long
+        String regex = "^.{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        return password.length() >= 8 && pattern.matcher(password).matches();
     }
 
 
