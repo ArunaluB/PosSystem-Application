@@ -51,6 +51,8 @@ public class Userboimpl implements userbo {
         System.out.println(hashpass);
         if(FrendEndHashpass.equals(hashpass)) {
             System.out.println("paword aka hari ");
+        } else {
+            System.out.println("password aka waradiy");
         }
 
     }
