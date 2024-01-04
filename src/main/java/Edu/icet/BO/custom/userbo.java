@@ -21,4 +21,6 @@ public interface userbo extends SuperBo {
 
     boolean validatepassword(String Npass, String CPass) throws SQLException, ClassNotFoundException;
 
+    boolean deleteCustomer(String Email) throws SQLException, ClassNotFoundException;
+
 }

@@ -115,6 +115,11 @@ public class Userboimpl implements userbo {
         return false;
     }
 
+    @Override
+    public boolean deleteCustomer(String Email) throws SQLException, ClassNotFoundException {
+        return usercalldao.delete(Email);
+    }
+
     private void setOtp(int num){
         int otp = num;
         OTPConvert = String.valueOf(num);
