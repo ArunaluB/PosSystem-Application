@@ -51,8 +51,13 @@ public class Userboimpl implements userbo {
 
     @Override
     public boolean updateCustomer(String Email, String password) throws SQLException, ClassNotFoundException {
-
-        return false;
+        UserEntity obj = new UserEntity();
+        obj.setId((long)0);
+        obj.setName("Namal");
+        obj.setEmail(Email);
+        obj.setPassword(password);
+        obj.setType("Admin");
+        return usercalldao.update(obj);
     }
 
 
@@ -103,7 +108,7 @@ public class Userboimpl implements userbo {
         if(isValidPassword(Npass)) {
             if(Npass.equals(CPass)) {
                 System.out.println("password 2 kama harii");
-                updateCustomer(Email,Npass);
+                usercalldao.updatePasswordByUsername(Email,Npass);
                 return true;
             }
         }
