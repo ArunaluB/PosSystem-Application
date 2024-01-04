@@ -10,16 +10,15 @@ import java.util.List;
 public interface userbo extends SuperBo {
 
     boolean saveUser(UserDto dto) throws SQLException, ClassNotFoundException;
-    boolean updateCustomer(UserDto dto) throws SQLException, ClassNotFoundException;
 
-    void searchUser(String username,String password);
+    boolean updateCustomer(String Email,String password) throws SQLException, ClassNotFoundException;
+
+    void searchUser(String username, String password);
 
     void searchUserEmailCheck(String userEmail) throws MessagingException;
 
     boolean verifyCode(String otp);
 
-
-
-    void passwordcheck(List list);
+    boolean validatepassword(String Npass, String CPass) throws SQLException, ClassNotFoundException;
 
 }
