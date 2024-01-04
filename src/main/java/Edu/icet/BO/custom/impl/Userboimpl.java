@@ -7,6 +7,7 @@ import Edu.icet.DAO.Util.SendMail;
 import Edu.icet.DTO.UserDto;
 import Edu.icet.Entity.UserEntity;
 import Edu.icet.controller.LoginFromController;
+import Edu.icet.controller.VerifyCodeFromControoler;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import javafx.scene.paint.Color;
 
@@ -18,6 +19,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Userboimpl implements userbo {
+
+   static String OTPConvert;
 
     int random;
     int OTP;
@@ -70,8 +73,33 @@ public class Userboimpl implements userbo {
         random = new Random().nextInt(9000);
         OTP = 1000+random;
         System.out.println("" + OTP + "");
+        setOtp(OTP);
         SendMail.outMail(""+OTP+"", Email, "E & E Servise Center Panadura");
+
     }
+
+    @Override
+    public boolean verifyCode(String otp) {
+
+        System.out.println("Genarate====otp code ");
+        System.out.println(OTPConvert);
+        System.out.println("user dena aka");
+        System.out.println(otp);
+
+        if(!OTPConvert.equals(otp)) {
+         return false   ;
+        }
+
+
+        return true;
+    }
+
+    private void setOtp(int num){
+        int otp = num;
+        OTPConvert = String.valueOf(num);
+    }
+
+
 
     private String passwordHash(String password) {
         try {

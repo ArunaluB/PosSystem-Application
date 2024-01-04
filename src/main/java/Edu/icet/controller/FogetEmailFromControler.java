@@ -29,6 +29,7 @@ public class FogetEmailFromControler {
         userbo userbocall = new Userboimpl();
         userbocall.searchUserEmailCheck(userEmail);
         System.out.println("mail aka awa ");
+
         Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/VerifyCodeFrom.fxml"));
         Scene scene = new Scene(rootNode);
         Stage stage = (Stage) this.rootNode.getScene().getWindow();

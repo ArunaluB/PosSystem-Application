@@ -16,6 +16,8 @@ public interface userbo extends SuperBo {
 
     void searchUserEmailCheck(String userEmail) throws MessagingException;
 
+    boolean verifyCode(String otp);
+
 
 
     void passwordcheck(List list);
