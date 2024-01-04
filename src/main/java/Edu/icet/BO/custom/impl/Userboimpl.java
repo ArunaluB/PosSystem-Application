@@ -5,7 +5,9 @@ import Edu.icet.DAO.Custom.Userdao;
 import Edu.icet.DAO.Custom.impl.Userdaoimpl;
 import Edu.icet.DTO.UserDto;
 import Edu.icet.Entity.UserEntity;
+import Edu.icet.controller.LoginFromController;
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import javafx.scene.paint.Color;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,6 +23,10 @@ public class Userboimpl implements userbo {
     public boolean saveUser(UserDto dto) throws SQLException, ClassNotFoundException {
 
         String usergetpassword = dto.getPassword();
+        if (usergetpassword.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")) {
+            System.out.println("password hari");
+        }
+
         String Encrippassword = passwordHash(usergetpassword);
         UserEntity obj = new UserEntity();
         obj.setId((long)0);
@@ -37,11 +43,15 @@ public class Userboimpl implements userbo {
         return false;
     }
 
+
     @Override
     public void searchUser(String username, String password) {
+        String FrendEndHashpass = passwordHash(password);
         String hashpass = usercalldao.getPasswordByUsername(username);
-
-
+        System.out.println(hashpass);
+        if(FrendEndHashpass.equals(hashpass)) {
+            System.out.println("paword aka hari ");
+        }
 
     }
 
@@ -65,4 +75,8 @@ public class Userboimpl implements userbo {
     public void passwordcheck(List list) {
 
     }
+
+
 }
+
+//86f7e437faa5a7fce15d1ddcb9eaeaea377667b8
