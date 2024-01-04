@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Edu.icet.controller.VerifyCodeFromControoler">
+   <children>
+      <ImageView fitHeight="453.0" fitWidth="665.0" layoutX="-29.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/background.jpg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="57.0" layoutY="58.0" prefHeight="315.0" prefWidth="528.0" style="-fx-background-color: F9FAFC; -fx-background-radius: 10;">
+         <children>
+            <Label alignment="CENTER" layoutX="-2.0" layoutY="30.0" prefHeight="27.0" prefWidth="536.0" text="Verify its  You">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="129.0" layoutY="87.0" text="Keep your accounts safe by checking and updating" />
+            <Label layoutX="196.0" layoutY="104.0" text="your passwords regularly." />
+            <JFXButton layoutX="153.0" layoutY="248.0" onAction="#conformOnAction" prefHeight="25.0" prefWidth="222.0" style="-fx-background-color: #06D2FF; -fx-background-radius: 10;" text="Conform" textFill="#f8f5f5" />
+            <TextField fx:id="OtpFirst" layoutX="117.0" layoutY="158.0" prefHeight="48.0" prefWidth="57.0" />
+            <TextField fx:id="OtpSecend" layoutX="196.0" layoutY="158.0" prefHeight="48.0" prefWidth="57.0" />
+            <TextField fx:id="OtpThird" layoutX="274.0" layoutY="158.0" prefHeight="48.0" prefWidth="57.0" />
+            <TextField fx:id="otpfiuth" layoutX="356.0" layoutY="158.0" prefHeight="48.0" prefWidth="57.0" />
+            <Label fx:id="ErrorMessagelabel" alignment="CENTER" layoutX="10.0" layoutY="217.0" prefHeight="17.0" prefWidth="517.0" text="OTP does not match try again" textFill="#ff0707" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

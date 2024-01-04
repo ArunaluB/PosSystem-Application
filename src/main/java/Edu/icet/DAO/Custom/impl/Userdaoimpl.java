@@ -71,6 +71,36 @@ public class Userdaoimpl implements Userdao {
         }
     }
 
+    public String getSearchByUsername(String username) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+
+            // Use HQL to create a query to retrieve the password for the given username
+            Query<UserEntity> query = session.createQuery("FROM UserEntity WHERE Email = :username", UserEntity.class);
+            query.setParameter("username", username);
+            UserEntity userEntity = query.uniqueResult();
+
+            // Check if userEntity is not null before retrieving the password
+            String Email = (userEntity != null) ? userEntity.getEmail() : null;
+
+            transaction.commit();
+
+            return Email;
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace(); // Handle the exception appropriately in your application
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
 }
 
 

@@ -3,18 +3,24 @@ package Edu.icet.BO.custom.impl;
 import Edu.icet.BO.custom.userbo;
 import Edu.icet.DAO.Custom.Userdao;
 import Edu.icet.DAO.Custom.impl.Userdaoimpl;
+import Edu.icet.DAO.Util.SendMail;
 import Edu.icet.DTO.UserDto;
 import Edu.icet.Entity.UserEntity;
 import Edu.icet.controller.LoginFromController;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import javafx.scene.paint.Color;
 
+import javax.mail.MessagingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Random;
 
 public class Userboimpl implements userbo {
+
+    int random;
+    int OTP;
 
     private int count = 1;
     private Userdao usercalldao = new Userdaoimpl();
@@ -55,6 +61,16 @@ public class Userboimpl implements userbo {
             System.out.println("password aka waradiy");
         }
 
+    }
+
+    @Override
+    public void searchUserEmailCheck(String userEmail) throws MessagingException {
+        String Email =usercalldao.getSearchByUsername(userEmail);
+        System.out.println(Email);
+        random = new Random().nextInt(9000);
+        OTP = 1000+random;
+        System.out.println("" + OTP + "");
+        SendMail.outMail(""+OTP+"", Email, "E & E Servise Center Panadura");
     }
 
     private String passwordHash(String password) {

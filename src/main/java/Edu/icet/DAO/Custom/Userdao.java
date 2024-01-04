@@ -4,5 +4,6 @@ import Edu.icet.DAO.Cruddao;
 
 public interface Userdao extends Cruddao {
     String getPasswordByUsername(String username);
+    String getSearchByUsername(String username);
 
 }
