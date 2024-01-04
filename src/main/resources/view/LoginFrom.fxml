@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="392.0" prefWidth="595.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Edu.icet.controller.LoginFromController">
+   <children>
+      <ImageView fitHeight="440.0" fitWidth="595.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/background.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="201.0" layoutY="58.0" prefHeight="38.0" prefWidth="178.0" text="Login" textFill="#f5f0f0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="120.0" layoutY="146.0" prefHeight="17.0" prefWidth="207.0" text="Email Address" textFill="#fcfafa" />
+      <Button layoutX="201.0" layoutY="316.0" mnemonicParsing="false" onAction="#StartOnAction" prefHeight="25.0" prefWidth="207.0" style="-fx-background-color: #06D2FF; -fx-background-radius: 10;" text="Start" />
+      <TextField fx:id="textemail" layoutX="120.0" layoutY="173.0" prefHeight="25.0" prefWidth="369.0" />
+      <Label layoutX="120.0" layoutY="208.0" prefHeight="17.0" prefWidth="207.0" text="Password" textFill="#fcfafa" />
+      <TextField fx:id="txtpass" layoutX="120.0" layoutY="234.0" prefHeight="25.0" prefWidth="369.0" />
+      <JFXButton layoutX="392.0" layoutY="274.0" onAction="#fogetOnAction" text="foget passwoed?..">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </JFXButton>
+      <Label alignment="CENTER" layoutX="164.0" layoutY="375.0" prefHeight="17.0" prefWidth="281.0" text="CreateBy ArunaluBamunusinghe" textFill="#eeeeee">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorlabel" alignment="CENTER" layoutY="107.0" prefHeight="17.0" prefWidth="595.0" text="error label" textFill="#ee0707" />
+   </children>
+</AnchorPane>

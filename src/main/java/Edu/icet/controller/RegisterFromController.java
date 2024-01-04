@@ -11,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterFromController {
 
@@ -50,22 +52,42 @@ public class RegisterFromController {
          String name = txtUName.getText();
          String email = txtEmail.getText();
          String password = txtPwd.getText();
+         System.out.println("tttttttttttttttt"); // Add this for debugging
 
-         UserDto user = new UserDto();
+
+        if (isValidPassword(password)) {
+            System.out.println("mmmmmmmmmmm"); // Add this for debugging
+            messageLabel.setText("");
+
+            UserDto user = new UserDto();
             user.setName(name);
             user.setEmail(email);
             user.setPassword(password);
             user.setType(Type);
 
-        userbo userbocall = new Userboimpl();
+            userbo userbocall = new Userboimpl();
 
-        try {
-            userbocall.saveUser(user);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            try {
+                userbocall.saveUser(user);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
+        }else {
+            System.out.println("yyyyyyyyyyyy"); // Add this for debugging
+
+            clear();
+            messageLabel.setText("Generate a Strong Password");
+            messageLabel.setTextFill(Color.RED);
+
         }
+
+
+
+
+
 
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -82,7 +104,13 @@ public class RegisterFromController {
 //        // Show the alert
         alert.showAndWait();
 
+
+
     }
+
+
+
+
 
     @FXML
     private String choics(ActionEvent actionEvent) {
@@ -97,21 +125,19 @@ public class RegisterFromController {
 
         return Type;
     }
-    private boolean checkPassWordRequirements (String password){
-        if(password.matches("^(?=.*[a-z]) (?=.* [A-Z]) (?=.*\\d) (?=.* [@$!%*?&]) [A-Za-z\\d@$!%*?&] {8,}$")){
-            messageLabel.setText("Passsword good this ");
-            messageLabel.setTextFill(Color.GREEN);
-            return true;
-        }else {
-            messageLabel.setText("Passsword Does not Meet Requrements  ");
-            messageLabel.setTextFill(Color.RED);
-            return false;
-        }
-    }
+
     private void clear (){
         txtPwd.setText("");
         messageLabel.setText("");
     }
+
+    private boolean isValidPassword(String password) {
+        // Password must be at least 8 characters long
+        String regex = "^.{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        return password.length() >= 8 && pattern.matcher(password).matches();
+    }
+
 
 
 }
