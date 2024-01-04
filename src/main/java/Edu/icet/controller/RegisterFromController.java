@@ -57,27 +57,34 @@ public class RegisterFromController {
 
         if (isValidPassword(password)) {
             System.out.println("mmmmmmmmmmm"); // Add this for debugging
+            messageLabel.setText("");
+
+            UserDto user = new UserDto();
+            user.setName(name);
+            user.setEmail(email);
+            user.setPassword(password);
+            user.setType(Type);
+
+            userbo userbocall = new Userboimpl();
+
+            try {
+                userbocall.saveUser(user);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
         }else {
             System.out.println("yyyyyyyyyyyy"); // Add this for debugging
+
+            clear();
+            messageLabel.setText("Generate a Strong Password");
+            messageLabel.setTextFill(Color.RED);
 
         }
 
 
-             UserDto user = new UserDto();
-             user.setName(name);
-             user.setEmail(email);
-             user.setPassword(password);
-             user.setType(Type);
-
-             userbo userbocall = new Userboimpl();
-
-             try {
-                 userbocall.saveUser(user);
-             } catch (SQLException e) {
-                 throw new RuntimeException(e);
-             } catch (ClassNotFoundException e) {
-                 throw new RuntimeException(e);
-             }
 
 
 
