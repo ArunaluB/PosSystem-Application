@@ -60,7 +60,7 @@ public class Userdaoimpl implements Userdao {
         try {
             transaction = session.beginTransaction();
 
-            Query<UserEntity> query = session.createQuery("FROM UserEntity WHERE email = :username", UserEntity.class);
+            Query<UserEntity> query = session.createQuery("FROM UserEntity WHERE Email = :username", UserEntity.class);
             query.setParameter("username", email);
 
             UserEntity userEntity = query.uniqueResult();
