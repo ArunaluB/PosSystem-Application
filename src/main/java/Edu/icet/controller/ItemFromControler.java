@@ -1,5 +1,7 @@
 package Edu.icet.controller;
 
+import Edu.icet.BO.custom.impl.itemboimpl;
+import Edu.icet.BO.custom.itembo;
 import Edu.icet.DTO.MyListener;
 import Edu.icet.DTO.item;
 
@@ -18,6 +20,7 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -77,7 +80,19 @@ public class ItemFromControler implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        itembo itemcall = new itemboimpl();
         Items.addAll(getData());
+
+//        itembo itemcall = new itemboimpl();
+//        try {
+//            Items.addAll(itemcall.loadData());
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+
         if (Items.size() > 0) {
             setChosenFruit(Items.get(0));
             myListener = new MyListener() {
