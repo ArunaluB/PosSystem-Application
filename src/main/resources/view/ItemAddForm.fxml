@@ -29,7 +29,6 @@
          </toggleGroup>
       </JFXRadioButton>
       <JFXRadioButton fx:id="TypeEm2" layoutX="175.0" layoutY="253.0" onAction="#choics" prefHeight="17.0" prefWidth="70.0" text="Electrical" toggleGroup="$choics" />
-      <Label fx:id="messageLabel" alignment="CENTER" layoutX="10.0" layoutY="86.0" prefHeight="17.0" prefWidth="305.0" text="Label" />
       <JFXButton layoutX="61.0" layoutY="213.0" onAction="#uploadOnAction" prefHeight="25.0" prefWidth="199.0" styleClass="transparent" stylesheets="@../css/style.css" text="Upload image" />
    </children>
 </AnchorPane>

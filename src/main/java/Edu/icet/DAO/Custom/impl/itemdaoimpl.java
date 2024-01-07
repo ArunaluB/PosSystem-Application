@@ -12,6 +12,9 @@ import java.util.List;
 public class itemdaoimpl implements itemdao {
     @Override
     public boolean save(Object entity) throws SQLException, ClassNotFoundException {
+        ItemEntity obj =new ItemEntity();
+        obj.setId((long)0);
+
         return false;
     }
 
