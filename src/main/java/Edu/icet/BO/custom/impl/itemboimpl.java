@@ -39,8 +39,8 @@ public class itemboimpl implements itembo {
     }
 
     @Override
-    public boolean deleteCustomer(String itemname) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean deleteitem(String itemname) throws SQLException, ClassNotFoundException {
+        return itemdao.delete(itemname);
     }
 
     @Override

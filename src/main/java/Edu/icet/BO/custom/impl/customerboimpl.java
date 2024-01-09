@@ -27,7 +27,7 @@ public class customerboimpl implements customerbo {
 
     @Override
     public boolean deleteCustomer(String ContactNumber) throws SQLException, ClassNotFoundException {
-        return false;
+        return calledDAO.delete(ContactNumber);
     }
 
     @Override

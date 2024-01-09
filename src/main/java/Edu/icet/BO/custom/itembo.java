@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public interface itembo extends SuperBo {
     boolean saveItem(ItemDto dto) throws SQLException, ClassNotFoundException;
-    boolean deleteCustomer(String itemname) throws SQLException, ClassNotFoundException;
+    boolean deleteitem(String itemname) throws SQLException, ClassNotFoundException;
 
     void searchUserEmailCheck(String itemname) throws MessagingException;
 }
