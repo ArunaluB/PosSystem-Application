@@ -26,6 +26,9 @@ public class itemcontrooler {
 
     private MyListener myListener;
 
+    @FXML
+    private Label avlable;
+
 
     @FXML
     private void click(MouseEvent mouseEvent) {
@@ -39,6 +42,8 @@ public class itemcontrooler {
         priceLable.setText(String.valueOf(item.getPrise()));
         Image image = new Image(getClass().getResourceAsStream(item.getImgsrc()));
         img.setImage(image);
+       // avlable.setText(item.getAvalable());
+
 
 
     }

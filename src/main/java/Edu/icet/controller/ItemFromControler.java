@@ -1,5 +1,7 @@
 package Edu.icet.controller;
 
+import Edu.icet.BO.custom.impl.itemboimpl;
+import Edu.icet.BO.custom.itembo;
 import Edu.icet.DTO.MyListener;
 import Edu.icet.DTO.item;
 
@@ -18,6 +20,7 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -51,45 +54,66 @@ public class ItemFromControler implements Initializable{
 
     private MyListener myListener;
 
-   private List<item> getData() {
+   private List<item> getData() throws SQLException, ClassNotFoundException {
        List<item> itemsnew = new ArrayList<>();
-       item itemobj;
+       itembo bo = new itemboimpl();
+       List<item> liveconnect = bo.loaditem();
+       System.out.println(liveconnect.get(0).getProductname());
+       System.out.println(liveconnect.get(0).getImgsrc());
 
-       for(int i=0;i<10;i++){
+//
+//       // itemsnew.addAll(liveconnect);
+       item itemobj;
+      for(int i=0;i<10;i++){
            itemobj = new item();
            itemobj.setProductname("kiwi");
+
+//          System.out.println(liveconnect.get(i).getImgsrc());
            itemobj.setPrise(40);
            itemobj.setImgsrc("/img/com.jpg");
            itemobj.setColor("FFB605");
            itemsnew.add(itemobj);
 
        }
+      String p = "/img/PostMan.jpg";
        itemobj = new item();
        itemobj.setProductname("adarii");
        itemobj.setPrise(40);
-       itemobj.setImgsrc("/img/ram.jpg");
-       itemobj.setColor("FFB605");
+       itemobj.setImgsrc(p);
+       System.out.println(p);
+       itemobj.setColor("#1273de");
        itemsnew.add(itemobj);
+//
 
-       return itemsnew;
+       for (int i = 0; i < liveconnect.size() ; i++) {
+           itemobj =new item() ;
+           itemobj.setProductname(liveconnect.get(i).getProductname());
+           itemobj.setPrise(liveconnect.get(i).getPrise());
+           itemobj.setImgsrc(liveconnect.get(i).getImgsrc());
+           itemobj.setColor(liveconnect.get(i).getColor());
+           itemsnew.add(itemobj);
+
+       }
+//       itemobj =new item() ;
+//       itemobj.setProductname(liveconnect.get(0).getProductname());
+//       itemobj.setPrise(liveconnect.get(0).getPrise());
+//       itemobj.setImgsrc(liveconnect.get(0).getImgsrc());
+//       itemobj.setColor(liveconnect.get(0).getColor());
+//       itemsnew.add(itemobj);
+            return itemsnew;
    }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-       // itembo itemcall = new itemboimpl();
-
-        Items.addAll(getData());
-
-//        itembo itemcall = new itemboimpl();
-//        try {
-//            Items.addAll(itemcall.loadData());
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        } catch (ClassNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            Items.addAll(getData());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         if (Items.size() > 0) {
             setChosenFruit(Items.get(0));
@@ -144,5 +168,6 @@ public class ItemFromControler implements Initializable{
         itemImg.setImage(image);
         chosenFruitCard.setStyle("-fx-background-color: #" + item.getColor() + ";\n" +
                 "    -fx-background-radius: 30;");
+
     }
 }

@@ -59,6 +59,10 @@ public class Itemdaoimpl implements Itemdao {
 
     @Override
     public List getAll() throws SQLException, ClassNotFoundException {
-        return null;
+        Session session = HibernateUtil.getSession();
+        Query query = session.createQuery("FROM ItemEntity");
+        List<ItemEntity> list = query.list();
+        session.close();
+        return list;
     }
 }

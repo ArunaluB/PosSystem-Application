@@ -133,7 +133,7 @@ public class ItemAddFormConrtoller {
                 saveImage(selectedFile);
 
                 // Save the image path to the database
-                imagePath = "/img/" + selectedFile.getName();
+                imagePath = "/UploadImg/" + selectedFile.getName();
                 System.out.println(imagePath);
                 // saveImageEntityToDatabase("/img/" + selectedFile.getName());
             } catch (IOException e) {

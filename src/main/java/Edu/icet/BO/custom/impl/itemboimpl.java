@@ -5,10 +5,13 @@ import Edu.icet.DAO.Custom.Itemdao;
 import Edu.icet.DAO.Custom.impl.Itemdaoimpl;
 import Edu.icet.DTO.ItemDto;
 import Edu.icet.DTO.UserDto;
+import Edu.icet.DTO.item;
 import Edu.icet.Entity.ItemEntity;
 
 import javax.mail.MessagingException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class itemboimpl implements itembo {
 
@@ -42,6 +45,32 @@ public class itemboimpl implements itembo {
     public boolean deleteitem(String itemname) throws SQLException, ClassNotFoundException {
         return itemdao.delete(itemname);
     }
+
+    @Override
+    public List<item> loaditem() throws SQLException, ClassNotFoundException {
+        List<ItemEntity> entityList = itemdao.getAll();
+        List<item> dtoList = new ArrayList<>();
+
+        for (ItemEntity entity : entityList) {
+            item dto = new item();
+            dto.setProductname(entity.getProductname());
+            dto.setPrise(entity.getPrise());
+            dto.setImgsrc(entity.getImgsrc());
+            dto.setColor(entity.getColor());
+            dto.setAvalable(entity.getAvalible());
+            dtoList.add(dto);
+//            System.out.println("Converted entity to DTO:");
+//            System.out.println("Product Name: " + dto.getProductname());
+//            System.out.println("Price: " + dto.getPrise());
+//            System.out.println("Image Source: " + dto.getImgsrc());
+//            System.out.println("Color: " + dto.getColor());
+//            System.out.println("Available: " + dto.getAvalable());
+
+        }
+        System.out.println(dtoList);
+        return dtoList;
+    }
+
 
     @Override
     public void searchUserEmailCheck(String itemname) throws MessagingException {
