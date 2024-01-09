@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane onMousePressed="#click" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Edu.icet.controller.itemcontrooler">
     <children>
         <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="8.0" prefHeight="215.0" prefWidth="225.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -39,6 +38,12 @@
                 </ImageView>
             </children>
         </VBox>
+      <HBox layoutY="177.0" prefHeight="22.0" prefWidth="225.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="117.0" text="Avalable " />
+            <Label fx:id="avlable" alignment="CENTER" prefHeight="17.0" prefWidth="110.0" text="Yes" />
+         </children>
+      </HBox>
     </children>
     <styleClass>
         <String fx:value="fruit-item" />

@@ -1,8 +1,11 @@
 package Edu.icet.controller;
 
+import Edu.icet.BO.custom.impl.itemboimpl;
+import Edu.icet.BO.custom.itembo;
 import Edu.icet.DTO.MyListener;
 import Edu.icet.DTO.item;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -15,9 +18,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.fxml.Initializable;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -45,39 +50,81 @@ public class ItemFromControler implements Initializable{
     @FXML
     private GridPane grid;
 
+    @FXML
+    private Label typelabel;
+
+    @FXML
+    private Label avalabeltxt;
+
+
 
     private List<item> Items = new ArrayList<>();
     private Image image;
 
     private MyListener myListener;
 
-   private List<item> getData() {
+   private List<item> getData() throws SQLException, ClassNotFoundException {
        List<item> itemsnew = new ArrayList<>();
-       item itemobj;
+       itembo bo = new itemboimpl();
+       List<item> liveconnect = bo.loaditem();
+       System.out.println(liveconnect.get(0).getProductname());
+       System.out.println(liveconnect.get(0).getImgsrc());
 
-       for(int i=0;i<10;i++){
+//
+//       // itemsnew.addAll(liveconnect);
+       item itemobj;
+      for(int i=0;i<10;i++){
            itemobj = new item();
            itemobj.setProductname("kiwi");
+
+//          System.out.println(liveconnect.get(i).getImgsrc());
            itemobj.setPrise(40);
            itemobj.setImgsrc("/img/com.jpg");
            itemobj.setColor("FFB605");
            itemsnew.add(itemobj);
 
        }
+      String p = "/img/PostMan.jpg";
        itemobj = new item();
        itemobj.setProductname("adarii");
        itemobj.setPrise(40);
-       itemobj.setImgsrc("/img/ram.jpg");
-       itemobj.setColor("FFB605");
+       itemobj.setImgsrc(p);
+       System.out.println(p);
+       itemobj.setColor("1273de");
        itemsnew.add(itemobj);
+//
 
-       return itemsnew;
+       for (int i = 0; i < liveconnect.size() ; i++) {
+           itemobj =new item() ;
+           itemobj.setProductname(liveconnect.get(i).getProductname());
+           itemobj.setPrise(liveconnect.get(i).getPrise());
+           itemobj.setImgsrc(liveconnect.get(i).getImgsrc());
+           itemobj.setColor(liveconnect.get(i).getColor());
+           itemobj.setAvalable(liveconnect.get(i).getAvalable());
+           itemsnew.add(itemobj);
+
+       }
+//       itemobj =new item() ;
+//       itemobj.setProductname(liveconnect.get(0).getProductname());
+//       itemobj.setPrise(liveconnect.get(0).getPrise());
+//       itemobj.setImgsrc(liveconnect.get(0).getImgsrc());
+//       itemobj.setColor(liveconnect.get(0).getColor());
+//       itemsnew.add(itemobj);
+            return itemsnew;
    }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Items.addAll(getData());
+
+        try {
+            Items.addAll(getData());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         if (Items.size() > 0) {
             setChosenFruit(Items.get(0));
             myListener = new MyListener() {
@@ -131,5 +178,44 @@ public class ItemFromControler implements Initializable{
         itemImg.setImage(image);
         chosenFruitCard.setStyle("-fx-background-color: #" + item.getColor() + ";\n" +
                 "    -fx-background-radius: 30;");
+        String code = item.getColor();
+       if(code.equals("FFB605")){
+           typelabel.setText("Electronic");
+        } else {
+            typelabel.setText("Electrical");
+        }
+        String avalable= item.getAvalable();
+        System.out.println("a"+avalable);
+
+        if (avalable != null && avalable.equals("Yes")) {
+            avalabeltxt.setText("In Available stock");
+            avalabeltxt.setTextFill(Color.GREEN);
+        } else {
+            // Handle the case when avalable is null
+            if (avalable == null) {
+                avalabeltxt.setText("Avalable value is null");
+                avalabeltxt.setTextFill(Color.RED);
+            } else {
+                avalabeltxt.setText("Out of Available stock");
+                avalabeltxt.setTextFill(Color.RED);
+            }
+        }
+
+
+//        if(avalable.equals("Yes")){
+//            avalabeltxt.setText("In Avalable stoke");
+//            avalabeltxt.setTextFill(Color.GREEN);
+//
+//        }else {
+//            avalabeltxt.setText("Out Avalable stoke");
+//            avalabeltxt.setTextFill(Color.RED);
+//
+//        }
+//       // typelabel.setText(item.ge);
+
+    }
+
+    public void UpdateOnAction(ActionEvent actionEvent) {
+
     }
 }
