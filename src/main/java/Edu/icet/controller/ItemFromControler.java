@@ -1,7 +1,5 @@
 package Edu.icet.controller;
 
-import Edu.icet.BO.custom.impl.itemboimpl;
-import Edu.icet.BO.custom.itembo;
 import Edu.icet.DTO.MyListener;
 import Edu.icet.DTO.item;
 
@@ -20,7 +18,6 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -81,7 +78,8 @@ public class ItemFromControler implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        itembo itemcall = new itemboimpl();
+       // itembo itemcall = new itemboimpl();
+
         Items.addAll(getData());
 
 //        itembo itemcall = new itemboimpl();

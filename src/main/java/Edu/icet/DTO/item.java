@@ -14,5 +14,4 @@ public class item {
     private String imgsrc;
     private double prise;
     private String color;
-
 }
