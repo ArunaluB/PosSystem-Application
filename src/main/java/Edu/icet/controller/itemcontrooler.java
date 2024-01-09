@@ -42,7 +42,7 @@ public class itemcontrooler {
         priceLable.setText(String.valueOf(item.getPrise()));
         Image image = new Image(getClass().getResourceAsStream(item.getImgsrc()));
         img.setImage(image);
-       // avlable.setText(item.getAvalable());
+        avlable.setText(item.getAvalable());
 
 
 

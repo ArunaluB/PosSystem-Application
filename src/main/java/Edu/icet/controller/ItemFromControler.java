@@ -5,6 +5,7 @@ import Edu.icet.BO.custom.itembo;
 import Edu.icet.DTO.MyListener;
 import Edu.icet.DTO.item;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -17,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.fxml.Initializable;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,6 +49,13 @@ public class ItemFromControler implements Initializable{
 
     @FXML
     private GridPane grid;
+
+    @FXML
+    private Label typelabel;
+
+    @FXML
+    private Label avalabeltxt;
+
 
 
     private List<item> Items = new ArrayList<>();
@@ -81,7 +90,7 @@ public class ItemFromControler implements Initializable{
        itemobj.setPrise(40);
        itemobj.setImgsrc(p);
        System.out.println(p);
-       itemobj.setColor("#1273de");
+       itemobj.setColor("1273de");
        itemsnew.add(itemobj);
 //
 
@@ -91,6 +100,7 @@ public class ItemFromControler implements Initializable{
            itemobj.setPrise(liveconnect.get(i).getPrise());
            itemobj.setImgsrc(liveconnect.get(i).getImgsrc());
            itemobj.setColor(liveconnect.get(i).getColor());
+           itemobj.setAvalable(liveconnect.get(i).getAvalable());
            itemsnew.add(itemobj);
 
        }
@@ -168,6 +178,44 @@ public class ItemFromControler implements Initializable{
         itemImg.setImage(image);
         chosenFruitCard.setStyle("-fx-background-color: #" + item.getColor() + ";\n" +
                 "    -fx-background-radius: 30;");
+        String code = item.getColor();
+       if(code.equals("FFB605")){
+           typelabel.setText("Electronic");
+        } else {
+            typelabel.setText("Electrical");
+        }
+        String avalable= item.getAvalable();
+        System.out.println("a"+avalable);
+
+        if (avalable != null && avalable.equals("Yes")) {
+            avalabeltxt.setText("In Available stock");
+            avalabeltxt.setTextFill(Color.GREEN);
+        } else {
+            // Handle the case when avalable is null
+            if (avalable == null) {
+                avalabeltxt.setText("Avalable value is null");
+                avalabeltxt.setTextFill(Color.RED);
+            } else {
+                avalabeltxt.setText("Out of Available stock");
+                avalabeltxt.setTextFill(Color.RED);
+            }
+        }
+
+
+//        if(avalable.equals("Yes")){
+//            avalabeltxt.setText("In Avalable stoke");
+//            avalabeltxt.setTextFill(Color.GREEN);
+//
+//        }else {
+//            avalabeltxt.setText("Out Avalable stoke");
+//            avalabeltxt.setTextFill(Color.RED);
+//
+//        }
+//       // typelabel.setText(item.ge);
+
+    }
+
+    public void UpdateOnAction(ActionEvent actionEvent) {
 
     }
 }

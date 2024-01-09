@@ -28,11 +28,11 @@ public class itemboimpl implements itembo {
         String chocise = dto.getType();
         if(chocise.equals("Electronic")){
             obj.setType("Electronic");
-            obj.setColor("#8ed1fc");
+            obj.setColor("FFB605");
             obj.setAvalible("Yes");
         }else {
             obj.setType("Electrical");
-            obj.setColor("#fccb00");
+            obj.setColor("1273de");
             obj.setAvalible("Yes");
 
         }
