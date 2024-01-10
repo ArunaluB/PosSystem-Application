@@ -9,6 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -19,7 +22,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.fxml.Initializable;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -56,12 +61,18 @@ public class ItemFromControler implements Initializable{
     @FXML
     private Label avalabeltxt;
 
+    @FXML
+    private Button updatebutton;
+
+
 
 
     private List<item> Items = new ArrayList<>();
     private Image image;
 
     private MyListener myListener;
+
+    private static  String productNameUse;
 
    private List<item> getData() throws SQLException, ClassNotFoundException {
        List<item> itemsnew = new ArrayList<>();
@@ -112,6 +123,7 @@ public class ItemFromControler implements Initializable{
 //       itemsnew.add(itemobj);
             return itemsnew;
    }
+
 
 
     @Override
@@ -173,6 +185,8 @@ public class ItemFromControler implements Initializable{
     }
     private void setChosenFruit(item item) {
         itemNameLable.setText(item.getProductname());
+        productNameUse = item.getProductname();
+        System.out.println("product name aka"+productNameUse);
         itemPriceLabel.setText(String.valueOf(item.getPrise()));
         image = new Image(getClass().getResourceAsStream(item.getImgsrc()));
         itemImg.setImage(image);
@@ -215,7 +229,14 @@ public class ItemFromControler implements Initializable{
 
     }
 
-    public void UpdateOnAction(ActionEvent actionEvent) {
-
+    public void UpdateOnAction(ActionEvent actionEvent) throws MessagingException, IOException {
+        itembo bo = new itemboimpl();
+        bo.setIteamname(productNameUse);
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/ItemUpdate.fxml"));
+        Scene scene = new Scene(rootNode);
+        Stage stage = (Stage) this.updatebutton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
     }
 }
