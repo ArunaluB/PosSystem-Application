@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="392.0" prefWidth="595.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Edu.icet.controller.LoginFromController">
+<AnchorPane fx:id="rootNode" prefHeight="392.0" prefWidth="595.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Edu.icet.controller.LoginFromController">
    <children>
       <ImageView fitHeight="440.0" fitWidth="595.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -36,6 +36,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="errorlabel" alignment="CENTER" layoutY="107.0" prefHeight="17.0" prefWidth="595.0" text="error label" textFill="#ee0707" />
+      <Label fx:id="errorlabel" alignment="CENTER" layoutY="107.0" prefHeight="17.0" prefWidth="595.0" textFill="#ee0707" />
    </children>
 </AnchorPane>

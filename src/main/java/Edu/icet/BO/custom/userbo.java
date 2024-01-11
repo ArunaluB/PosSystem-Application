@@ -4,6 +4,7 @@ import Edu.icet.BO.SuperBo;
 import Edu.icet.DTO.UserDto;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,9 +14,11 @@ public interface userbo extends SuperBo {
 
     boolean updateCustomer(String Email,String password) throws SQLException, ClassNotFoundException;
 
-    void searchUser(String username, String password);
+    void searchUser(String username, String password) throws IOException;
 
     void searchUserEmailCheck(String userEmail) throws MessagingException;
+
+
 
     boolean verifyCode(String otp);
 

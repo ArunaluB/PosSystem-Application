@@ -29,6 +29,6 @@
          </toggleGroup>
       </JFXRadioButton>
       <JFXRadioButton fx:id="TypeAD" layoutX="175.0" layoutY="253.0" onAction="#choics" prefHeight="17.0" prefWidth="70.0" text="Admin" toggleGroup="$choics" />
-      <Label fx:id="messageLabel" alignment="CENTER" layoutX="10.0" layoutY="86.0" prefHeight="17.0" prefWidth="305.0" text="Label" />
+      <Label fx:id="messageLabel" alignment="CENTER" layoutX="10.0" layoutY="86.0" prefHeight="17.0" prefWidth="305.0" />
    </children>
 </AnchorPane>
