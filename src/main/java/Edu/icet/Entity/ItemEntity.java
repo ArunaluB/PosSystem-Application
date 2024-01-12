@@ -1,6 +1,7 @@
 package Edu.icet.Entity;
 
 import lombok.*;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 
@@ -17,6 +18,8 @@ public class ItemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
+    @NaturalId(mutable = true)
+    @Column(name = "productname")
     private String Productname;
     private Double Prise;
     private String Imgsrc;

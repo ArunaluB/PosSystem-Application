@@ -9,9 +9,11 @@ import Edu.icet.Entity.UserEntity;
 import Edu.icet.controller.LoginFromController;
 import Edu.icet.controller.VerifyCodeFromControoler;
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -62,15 +64,27 @@ public class Userboimpl implements userbo {
 
 
     @Override
-    public void searchUser(String username, String password) {
+    public void searchUser(String username, String password) throws IOException {
         String FrendEndHashpass = passwordHash(password);
         String hashpass = usercalldao.getPasswordByUsername(username);
+        String Type = usercalldao.getSearchByType(username);
+        System.out.println(Type);
         System.out.println(hashpass);
         if(FrendEndHashpass.equals(hashpass)) {
             System.out.println("paword aka hari ");
+
         } else {
             System.out.println("password aka waradiy");
         }
+        LoginFromController obj = new LoginFromController();
+         if(Type.equals("Admin")){
+             System.out.println("admin");
+            // obj.AdminDashGo();
+         } else {
+             System.out.println("user");
+            // obj.EmployeeDashGo();
+            obj.setdata(Type);
+         }
 
     }
 
@@ -78,6 +92,14 @@ public class Userboimpl implements userbo {
     public void searchUserEmailCheck(String userEmail) throws MessagingException {
         Email =usercalldao.getSearchByUsername(userEmail);
         System.out.println(Email);
+        if (Email == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Email Not Registered");
+            alert.setContentText("This Email is not registered. Please check your email address.");
+            alert.showAndWait();
+        }
+
         random = new Random().nextInt(9000);
         OTP = 1000+random;
         System.out.println("" + OTP + "");

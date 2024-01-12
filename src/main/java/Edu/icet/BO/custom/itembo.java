@@ -14,5 +14,15 @@ public interface itembo extends SuperBo {
     boolean deleteitem(String itemname) throws SQLException, ClassNotFoundException;
     List<item> loaditem() throws SQLException, ClassNotFoundException;
 
-    void searchUserEmailCheck(String itemname) throws MessagingException;
+    boolean updateItem(String itemname,Double prise,String avalable) throws SQLException, ClassNotFoundException;
+
+    item searchItemNameCheck(String itemname) throws MessagingException;
+
+    String setIteamname(String itemname);
+
+    String getd();
+
+    item rowdetalis ();
+
+    //item olddatashown()
 }

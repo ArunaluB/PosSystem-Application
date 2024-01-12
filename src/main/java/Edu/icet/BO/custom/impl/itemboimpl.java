@@ -17,6 +17,8 @@ public class itemboimpl implements itembo {
 
    private Itemdao itemdao =new Itemdaoimpl();
 
+    public static String itemname ;
+
     @Override
     public boolean saveItem(ItemDto dto) throws SQLException, ClassNotFoundException {
         System.out.println(dto.getType());
@@ -71,9 +73,67 @@ public class itemboimpl implements itembo {
         return dtoList;
     }
 
+    @Override
+    public boolean updateItem(String itemname, Double prise, String avalable) throws SQLException, ClassNotFoundException {
+        ItemEntity obj = new ItemEntity();
+        obj.setId(0);
+        obj.setProductname(itemname);
+        obj.setPrise(prise);
+        obj.setAvalible(avalable);
+        obj.setType("uu");
+        obj.setImgsrc("");
+        obj.setColor("ii");
+       // obj.set
+        itemdao.update(obj);
+        return true;
+    }
+
 
     @Override
-    public void searchUserEmailCheck(String itemname) throws MessagingException {
-
+    public item searchItemNameCheck(String itemname) throws MessagingException {
+        ItemEntity obj = itemdao.getItemByProductname(itemname);
+        item dto = new item();
+        dto.setProductname(obj.getProductname());
+        dto.setImgsrc(obj.getImgsrc());
+        dto.setAvalable(obj.getAvalible());
+        dto.setColor(obj.getColor());
+        System.out.println(obj);
+        return dto;
     }
+
+    @Override
+    public String setIteamname(String itemname) {
+        this.itemname=itemname;
+        System.out.println("setIteamcall method run"+itemname);
+        return itemname;
+    }
+    public String getd(){
+        return itemname;
+    }
+
+    @Override
+    public item rowdetalis() {
+        ItemEntity entity = itemdao.getItemByProductname(itemname);
+        item dto = new item();
+        dto.setProductname(entity.getProductname());
+        dto.setImgsrc(entity.getImgsrc());
+        dto.setPrise(entity.getPrise());
+        dto.setAvalable(entity.getAvalible());
+        dto.setColor(entity.getColor());
+        System.out.println(entity.getProductname());
+        return dto;
+    }
+
+
+//    public item tranferdata(ItemEntity entity){
+//
+//        item dto = new item();
+//        dto.setProductname(entity.getProductname());
+//        dto.setImgsrc(entity.getImgsrc());
+//        dto.setPrise(entity.getPrise());
+//        dto.setAvalable(entity.getAvalible());
+//        dto.setColor(entity.getColor());
+//        return dto;
+//    }
+
 }

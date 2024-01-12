@@ -27,10 +27,6 @@ public class ChangePasswordFromController {
             showAlert("Error", "Invalid password. Please try again.");
         }
 
-
-
-
-
     }
 
     private void showAlert(String title, String content) {

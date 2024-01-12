@@ -133,7 +133,7 @@
                               <Label fx:id="avalabeltxt" alignment="CENTER" prefHeight="27.0" prefWidth="228.0" />
                            </children>
                         </HBox>
-                        <Button mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="50.0" prefWidth="270.0" styleClass="add-btn" stylesheets="@../css/style.css" text="Update Detals" textFill="#828282">
+                        <Button fx:id="updatebutton" mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="50.0" prefWidth="270.0" styleClass="add-btn" stylesheets="@../css/style.css" text="Update Detals" textFill="#828282">
                            <VBox.margin>
                               <Insets bottom="20.0" top="30.0" />
                            </VBox.margin>

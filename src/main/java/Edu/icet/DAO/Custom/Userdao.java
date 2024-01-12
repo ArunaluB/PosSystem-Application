@@ -6,6 +6,8 @@ public interface Userdao extends Cruddao {
     String getPasswordByUsername(String username);
     String getSearchByUsername(String username);
 
+    String getSearchByType(String username);
+
     boolean updatePasswordByUsername(String username, String newPassword);
 
 }
