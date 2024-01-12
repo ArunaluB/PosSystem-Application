@@ -6,11 +6,13 @@ import Edu.icet.DAO.Custom.impl.Customerdaoimpl;
 import Edu.icet.DTO.CustomerDto;
 import Edu.icet.Entity.CustomerEntity;
 
+import javax.mail.MessagingException;
 import java.sql.SQLException;
 
 public class customerboimpl implements customerbo {
 
     private customerdao calledDAO = new Customerdaoimpl();
+    public static String phoneNumberSearch ;
 
 
     @Override
@@ -34,4 +36,16 @@ public class customerboimpl implements customerbo {
     public boolean updateCustomer(CustomerDto dto) throws SQLException, ClassNotFoundException {
         return false;
     }
+
+    @Override
+    public String searchByCustomerDetails(String phonenumber) throws MessagingException {
+        phoneNumberSearch = phonenumber;
+        String Name = calledDAO.getSearchByCustomer(phonenumber);
+        return Name;
+    }
+    public String getphonenumber(){
+        return phoneNumberSearch;
+    }
+
+
 }
