@@ -63,4 +63,10 @@ public class Orderboimpl implements Orderbo {
         entity.setDate(dto.getDate());
         return calledDao.save(entity);
     }
+
+    @Override
+    public boolean deleteOrder(String Orderid) throws SQLException, ClassNotFoundException {
+
+        return calledDao.delete(Orderid);
+    }
 }

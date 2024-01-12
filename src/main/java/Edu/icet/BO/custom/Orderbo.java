@@ -11,4 +11,7 @@ public interface Orderbo extends SuperBo {
     void setidmethod(String orderid);
     String getorderid();
     boolean saveOrder(OrderDto dto) throws SQLException, ClassNotFoundException;
+
+    boolean deleteOrder(String Orderid) throws SQLException, ClassNotFoundException;
+
 }
