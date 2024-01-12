@@ -3,7 +3,9 @@ package Edu.icet.BO.custom;
 import Edu.icet.BO.SuperBo;
 import Edu.icet.DTO.OrderDto;
 import Edu.icet.DTO.UserDto;
+import Edu.icet.DTO.item;
 
+import javax.mail.MessagingException;
 import java.sql.SQLException;
 
 public interface Orderbo extends SuperBo {
@@ -13,5 +15,8 @@ public interface Orderbo extends SuperBo {
     boolean saveOrder(OrderDto dto) throws SQLException, ClassNotFoundException;
 
     boolean deleteOrder(String Orderid) throws SQLException, ClassNotFoundException;
+
+    OrderDto searchByOrderdetails(String itemname) throws MessagingException;
+
 
 }

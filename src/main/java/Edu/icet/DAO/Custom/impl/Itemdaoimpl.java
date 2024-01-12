@@ -92,15 +92,17 @@ public class Itemdaoimpl implements Itemdao {
         return list;
     }
 
+
     @Override
-    public ItemEntity getItemByProductname(String productName) {
+    public ItemEntity getItemByProductname(String itemName) {
+
         Session session = HibernateUtil.getSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
 
             Query<ItemEntity> query = session.createQuery("FROM ItemEntity WHERE Productname = :Productname", ItemEntity.class);
-            query.setParameter("Productname", productName);
+            query.setParameter("Productname", itemName);
             ItemEntity itemEntity = query.uniqueResult();
 
             transaction.commit();
@@ -117,9 +119,6 @@ public class Itemdaoimpl implements Itemdao {
             session.close();
         }
 
+
     }
-
-
-
-
 }

@@ -4,6 +4,7 @@ import Edu.icet.BO.custom.Orderbo;
 import Edu.icet.DAO.Custom.Orderdao;
 import Edu.icet.DAO.Util.HibernateUtil;
 import Edu.icet.DTO.OrderDto;
+import Edu.icet.Entity.ItemEntity;
 import Edu.icet.Entity.OrderEntity;
 import Edu.icet.Entity.UserEntity;
 import org.hibernate.Session;
@@ -91,6 +92,33 @@ public class Orderdaoimpl implements Orderdao {
             }
             session.close();
         }
+    }
+
+    @Override
+    public OrderEntity getOrderByOrderId(String Orderid) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+
+            Query<OrderEntity> query = session.createQuery("FROM OrderEntity WHERE OrderId = :OrderId", OrderEntity.class);
+            query.setParameter("OrderId", Orderid);
+            OrderEntity OrderEntity = query.uniqueResult();
+
+            transaction.commit();
+
+            return OrderEntity;
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace(); // Handle the exception appropriately in your application
+            return null;
+        } finally {
+            session.close();
+        }
+
     }
 
 }

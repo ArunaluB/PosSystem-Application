@@ -10,6 +10,7 @@ import Edu.icet.DAO.Util.SendReceiptEmail;
 import Edu.icet.DTO.OrderDto;
 import Edu.icet.Entity.OrderEntity;
 
+import javax.mail.MessagingException;
 import java.sql.SQLException;
 
 public class Orderboimpl implements Orderbo {
@@ -68,5 +69,19 @@ public class Orderboimpl implements Orderbo {
     public boolean deleteOrder(String Orderid) throws SQLException, ClassNotFoundException {
 
         return calledDao.delete(Orderid);
+    }
+
+    @Override
+    public OrderDto searchByOrderdetails(String itemname) throws MessagingException {
+        OrderEntity Entity =calledDao.getOrderByOrderId(itemname);
+        OrderDto dto = new OrderDto();
+        dto.setOrderId(Entity.getOrderId());
+        dto.setName(Entity.getName());
+        dto.setEmail(Entity.getEmail());
+        dto.setPhonenumber(Entity.getPhonenumber());
+        dto.setNote(Entity.getNote());
+        dto.setType(Entity.getStatus());
+        dto.setStatus(Entity.getStatus());
+        return dto;
     }
 }
