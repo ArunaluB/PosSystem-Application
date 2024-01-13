@@ -7,6 +7,7 @@ import Edu.icet.DTO.item;
 
 import javax.mail.MessagingException;
 import java.sql.SQLException;
+import java.util.List;
 
 public interface Orderbo extends SuperBo {
     String generateId() throws SQLException, ClassNotFoundException;
@@ -17,6 +18,9 @@ public interface Orderbo extends SuperBo {
     boolean deleteOrder(String Orderid) throws SQLException, ClassNotFoundException;
 
     OrderDto searchByOrderdetails(String itemname) throws MessagingException;
+
+    List<OrderDto> loaditem() throws SQLException, ClassNotFoundException;
+
 
 
 }

@@ -66,8 +66,34 @@ public class Orderdaoimpl implements Orderdao {
     }
 
     @Override
-    public List getAll() throws SQLException, ClassNotFoundException {
-        return null;
+    public List<OrderEntity> getAll() throws SQLException, ClassNotFoundException {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = null;
+
+        try {
+            transaction = session.beginTransaction();
+
+            System.out.println("Executing getAll query");
+            Query<OrderEntity> query = session.createQuery("FROM OrderEntity", OrderEntity.class);
+            List<OrderEntity> list = query.list();
+            System.out.println("Query executed successfully");
+
+            transaction.commit();
+            System.out.println("dao aka ban");
+            System.out.println(list.get(0).getDate());
+
+            return list;
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace(); // Log the exception or handle it as needed
+            return null;
+
+        } finally {
+            session.close();
+        }
     }
 
     @Override

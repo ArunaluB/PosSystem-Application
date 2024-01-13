@@ -8,10 +8,14 @@ import Edu.icet.DAO.Custom.impl.Orderdaoimpl;
 import Edu.icet.DAO.Util.SendMail;
 import Edu.icet.DAO.Util.SendReceiptEmail;
 import Edu.icet.DTO.OrderDto;
+import Edu.icet.DTO.item;
+import Edu.icet.Entity.ItemEntity;
 import Edu.icet.Entity.OrderEntity;
 
 import javax.mail.MessagingException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Orderboimpl implements Orderbo {
     private Orderdao calledDao= new Orderdaoimpl();
@@ -84,4 +88,76 @@ public class Orderboimpl implements Orderbo {
         dto.setStatus(Entity.getStatus());
         return dto;
     }
+
+    @Override
+//    public List<OrderDto> loaditem() throws SQLException, ClassNotFoundException {
+//        List<OrderEntity> entityList = calledDao.getAll();
+//        System.out.println("check data ana aka bo ge");
+//        System.out.println(entityList.get(0).getOrderId());
+//
+//        System.out.println(entityList.get(0).getOrderId());
+//        List<OrderDto> dtoList = new ArrayList<>();
+//
+//        for (OrderEntity entity : entityList) {
+//            OrderDto dto = new OrderDto();
+//            dto.setOrderId(entity.getOrderId());
+//            dto.setName(entity.getName());
+//            dto.setEmail(entity.getEmail());
+//            dto.setPhonenumber(entity.getPhonenumber());
+//            dto.setNote(entity.getNote());
+//            dto.setStatus(entity.getStatus());
+//            dto.setType(entity.getType());
+//            dto.setDate(entity.getDate());
+//
+//            dtoList.add(dto);
+//        }
+//
+//        System.out.println("order bo ake aka ");
+//
+//        if (!dtoList.isEmpty()) {
+//            System.out.println(dtoList.get(0).getDate());
+//        } else {
+//            System.out.println("dtoList is empty");
+//        }
+//
+//        return dtoList;
+//    }
+
+    public List<OrderDto> loaditem() throws SQLException, ClassNotFoundException {
+        List<OrderEntity> entityList = calledDao.getAll();
+        System.out.println("check data ana aka bo ge");
+        System.out.println(entityList.get(0).getOrderId());
+
+        System.out.println(entityList.get(0).getOrderId());
+        List<OrderDto> dtoList = new ArrayList<>();
+
+        for (OrderEntity entity : entityList) {
+            String checkst = entity.getStatus();
+            // Check if the status is "pending"
+            if (checkst.equals("Pending")) {
+                OrderDto dto = new OrderDto();
+                dto.setOrderId(entity.getOrderId());
+                dto.setName(entity.getName());
+                dto.setEmail(entity.getEmail());
+                dto.setPhonenumber(entity.getPhonenumber());
+                dto.setNote(entity.getNote());
+                dto.setStatus(entity.getStatus());
+                dto.setType(entity.getType());
+                dto.setDate(entity.getDate());
+
+                dtoList.add(dto);
+            }
+        }
+
+        System.out.println("order bo ake aka ");
+
+        if (!dtoList.isEmpty()) {
+            System.out.println(dtoList.get(0).getDate());
+        } else {
+            System.out.println("dtoList is empty");
+        }
+
+        return dtoList;
+    }
+
 }
