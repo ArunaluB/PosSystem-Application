@@ -125,6 +125,7 @@ public class Orderboimpl implements Orderbo {
 
     public List<OrderDto> loaditem() throws SQLException, ClassNotFoundException {
         List<OrderEntity> entityList = calledDao.getAll();
+
         System.out.println("check data ana aka bo ge");
         System.out.println(entityList.get(0).getOrderId());
 
@@ -170,6 +171,7 @@ public class Orderboimpl implements Orderbo {
         entity.setType(dto.getType());
         entity.setDate(dto.getDate());
         entity.setStatus("Processing");
+        entity.setOrderidnatural(dto.getOrderId());
         return calledDao.update(entity) ;
     }
 

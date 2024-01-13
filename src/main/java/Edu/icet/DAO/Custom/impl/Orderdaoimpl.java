@@ -66,7 +66,7 @@ public class Orderdaoimpl implements Orderdao {
         try {
             transaction = session.beginTransaction();
 
-            Query<OrderEntity> query = session.createQuery("FROM OrderEntity WHERE orderId = :OrderId", OrderEntity.class);
+            Query<OrderEntity> query = session.createQuery("FROM OrderEntity WHERE OrderId = :OrderId", OrderEntity.class);
             query.setParameter("OrderId", value);
 
             OrderEntity userEntity = query.uniqueResult();
@@ -128,7 +128,7 @@ public class Orderdaoimpl implements Orderdao {
 
         try {
             transaction = session.beginTransaction();
-            String hql = "SELECT orderId FROM OrderEntity ORDER BY orderId DESC";
+            String hql = "SELECT OrderId FROM OrderEntity ORDER BY OrderId DESC";
             Query<String> query = session.createQuery(hql, String.class);  // Change Integer to String
             query.setMaxResults(1);
             String lastOrderId = query.uniqueResult();
@@ -152,7 +152,7 @@ public class Orderdaoimpl implements Orderdao {
         try {
             transaction = session.beginTransaction();
 
-            Query<OrderEntity> query = session.createQuery("FROM OrderEntity WHERE orderId = :OrderId", OrderEntity.class);
+            Query<OrderEntity> query = session.createQuery("FROM OrderEntity WHERE OrderId = :OrderId", OrderEntity.class);
             query.setParameter("OrderId", Orderid);
             OrderEntity OrderEntity = query.uniqueResult();
 
