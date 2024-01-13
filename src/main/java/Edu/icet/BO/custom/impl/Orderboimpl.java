@@ -160,4 +160,20 @@ public class Orderboimpl implements Orderbo {
         return dtoList;
     }
 
+    @Override
+    public boolean updateItem(OrderDto dto) throws SQLException, ClassNotFoundException {
+        OrderEntity entity = new OrderEntity();
+        entity.setOrderId(dto.getOrderId());
+        entity.setName(dto.getName());
+        entity.setPhonenumber(dto.getPhonenumber());
+        entity.setNote(dto.getNote());
+        entity.setType(dto.getType());
+        entity.setDate(dto.getDate());
+        entity.setStatus("Processing");
+        return calledDao.update(entity) ;
+    }
+
+
+
+
 }

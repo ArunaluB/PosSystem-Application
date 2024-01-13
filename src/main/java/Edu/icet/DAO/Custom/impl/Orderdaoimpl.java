@@ -29,9 +29,34 @@ public class Orderdaoimpl implements Orderdao {
 
     @Override
     public boolean update(Object entity) throws SQLException, ClassNotFoundException {
+        try (Session session = HibernateUtil.getSession()) {
+            Transaction transaction = session.beginTransaction();
 
-        return false;
+            String orderId = ((OrderEntity) entity).getOrderId();
+            OrderEntity order = session.byNaturalId(OrderEntity.class).using("orderidnatural", orderId).load();
+
+
+            if (order != null) {
+                // Update only if the order with the given orderId exists
+               // order.setStatus("Processing");
+                order.setStatus(((OrderEntity) entity).getStatus());
+
+                session.saveOrUpdate(order);
+                transaction.commit();
+                return true;
+            } else {
+                // Handle the case when the order with the given orderId does not exist
+                System.out.println("Order with orderId " + orderId + " not found.");
+                transaction.rollback();
+                return false;
+            }
+        } catch (Exception e) {
+            // Handle exceptions appropriately (log or throw a custom exception)
+            e.printStackTrace();
+            return false;
+        }
     }
+
 
     @Override
     public boolean delete(String value) throws SQLException, ClassNotFoundException {
@@ -41,7 +66,7 @@ public class Orderdaoimpl implements Orderdao {
         try {
             transaction = session.beginTransaction();
 
-            Query<OrderEntity> query = session.createQuery("FROM OrderEntity WHERE OrderId = :OrderId", OrderEntity.class);
+            Query<OrderEntity> query = session.createQuery("FROM OrderEntity WHERE orderId = :OrderId", OrderEntity.class);
             query.setParameter("OrderId", value);
 
             OrderEntity userEntity = query.uniqueResult();
@@ -103,7 +128,7 @@ public class Orderdaoimpl implements Orderdao {
 
         try {
             transaction = session.beginTransaction();
-            String hql = "SELECT OrderId FROM OrderEntity ORDER BY OrderId DESC";
+            String hql = "SELECT orderId FROM OrderEntity ORDER BY orderId DESC";
             Query<String> query = session.createQuery(hql, String.class);  // Change Integer to String
             query.setMaxResults(1);
             String lastOrderId = query.uniqueResult();
@@ -127,7 +152,7 @@ public class Orderdaoimpl implements Orderdao {
         try {
             transaction = session.beginTransaction();
 
-            Query<OrderEntity> query = session.createQuery("FROM OrderEntity WHERE OrderId = :OrderId", OrderEntity.class);
+            Query<OrderEntity> query = session.createQuery("FROM OrderEntity WHERE orderId = :OrderId", OrderEntity.class);
             query.setParameter("OrderId", Orderid);
             OrderEntity OrderEntity = query.uniqueResult();
 

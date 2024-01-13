@@ -8,17 +8,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class RequestViewOpenFromControoler {
+public class RequestViewOpenFromControoler  {
 
     @FXML
     private AnchorPane rootNode;
@@ -79,6 +76,15 @@ public class RequestViewOpenFromControoler {
         for (OrderDto orderDto : dtolist) {
             Button getButton = new Button("Getprocess");
             getButton.setStyle("-fx-background-color: white; -fx-text-fill: green; -fx-font-weight: bold;");
+            getButton.setOnAction(event -> {
+                try {
+                    processUpdate(orderDto);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            });
             ordertm tabledatils = new ordertm();
             tabledatils.setOrderId(orderDto.getOrderId());
             tabledatils.setName(orderDto.getName());
@@ -93,14 +99,47 @@ public class RequestViewOpenFromControoler {
         tableView.setItems(obListRe);
     }
 
+    public void processUpdate(OrderDto dto) throws SQLException, ClassNotFoundException {
+        Orderbo bocalled = new Orderboimpl();
+        bocalled.updateItem(dto);
+        // Remove the selected item from the TableView
+        ordertm selectedItem = tableView.getSelectionModel().getSelectedItem();
+        obListRe.remove(selectedItem);
+        try {
+            loadAllTable();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+
+        // Show success alert
+        showSuccessAlert();
+    }
+
+    public void btnRefreshOnAction(ActionEvent actionEvent) {
+        try {
+            loadAllTable();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+
+    }
+
+    private void showSuccessAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText("get processes successfully!");
+
+        alert.showAndWait();
+    }
+
     public void btnADDCarOnAction(ActionEvent actionEvent) {
     }
 
     public void txtSEARCHOnAction(ActionEvent actionEvent) {
     }
 
-    public void btnRefreshOnAction(ActionEvent actionEvent) {
-    }
+
 
     public void btnDashboardOnAction(ActionEvent actionEvent) {
     }

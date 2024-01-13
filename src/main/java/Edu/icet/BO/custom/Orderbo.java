@@ -21,6 +21,6 @@ public interface Orderbo extends SuperBo {
 
     List<OrderDto> loaditem() throws SQLException, ClassNotFoundException;
 
-
+    boolean updateItem(OrderDto dto) throws SQLException, ClassNotFoundException;
 
 }

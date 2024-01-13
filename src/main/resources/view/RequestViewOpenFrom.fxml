@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,7 +19,7 @@
                         <Font name="Corbel Bold" size="17.0" />
                     </font>
                 </Label>
-                <TableView fx:id="tableView" layoutX="24.0" layoutY="163.0" prefHeight="390.0" prefWidth="809.0" stylesheets="@../css/tableViewStyle.css">
+                <TableView fx:id="tableView" layoutX="37.0" layoutY="160.0" prefHeight="390.0" prefWidth="809.0" stylesheets="@../css/tableViewStyle.css">
                     <columns>
                         <TableColumn fx:id="Orderid" prefWidth="116.0" text="OrderId" />
                         <TableColumn fx:id="colcustomer" prefWidth="130.0" text="Customer Name" />
@@ -30,10 +29,6 @@
                         <TableColumn fx:id="colprocss" prefWidth="115.0" text="GetProcess" />
                     </columns>
                 </TableView>
-                <TextField fx:id="txtSearchCar" layoutX="641.0" layoutY="38.0" onAction="#txtSEARCHOnAction" prefHeight="25.0" prefWidth="192.0" promptText="Search">
-                    <font>
-                        <Font size="11.0" />
-                    </font></TextField>
                 <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="792.0" layoutY="566.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../img/dashboard(1).png" />
