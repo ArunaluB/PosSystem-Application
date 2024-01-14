@@ -1,9 +1,6 @@
 package Edu.icet.DAO.Util;
 
-import Edu.icet.Entity.CustomerEntity;
-import Edu.icet.Entity.ItemEntity;
-import Edu.icet.Entity.OrderEntity;
-import Edu.icet.Entity.UserEntity;
+import Edu.icet.Entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -27,6 +24,7 @@ public class HibernateUtil {
                 .addAnnotatedClass(CustomerEntity.class)
                 .addAnnotatedClass(ItemEntity.class)
                 .addAnnotatedClass(OrderEntity.class)
+                .addAnnotatedClass(OrderEntityM.class)
                 .getMetadataBuilder()
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();
