@@ -24,4 +24,8 @@ public interface Orderbo extends SuperBo {
 
     boolean updateItem(OrderDto dto) throws SQLException, ClassNotFoundException;
 
+    boolean updateByCompele(OrderDto dto,String completed) throws SQLException, ClassNotFoundException;
+
+
+
 }

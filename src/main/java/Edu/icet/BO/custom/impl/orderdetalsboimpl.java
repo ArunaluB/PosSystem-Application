@@ -2,9 +2,14 @@ package Edu.icet.BO.custom.impl;
 
 import Edu.icet.BO.custom.orderdetalsbo;
 import Edu.icet.DAO.Custom.Orderdetalsdao;
+import Edu.icet.DAO.Custom.OrderfinalbillDao;
 import Edu.icet.DAO.Custom.impl.OrderdetailsDaoimpl;
+import Edu.icet.DAO.Custom.impl.Orderfinalbilldaoimpl;
+import Edu.icet.DTO.BillFinalDetals;
 import Edu.icet.DTO.OrderDto;
+import Edu.icet.DTO.PayBillDto;
 import Edu.icet.DTO.orderdetailsDto;
+import Edu.icet.Entity.FinalBillRecodeEntity;
 import Edu.icet.Entity.OrderEntity;
 import Edu.icet.Entity.OrderEntityM;
 
@@ -15,6 +20,7 @@ import java.util.List;
 public class orderdetalsboimpl implements orderdetalsbo {
 
     private Orderdetalsdao daocall = new OrderdetailsDaoimpl();
+    private OrderfinalbillDao daobillfinal = new Orderfinalbilldaoimpl();
     @Override
     public boolean saveOrder(orderdetailsDto dto) throws SQLException, ClassNotFoundException {
         OrderEntityM obj = new OrderEntityM();
@@ -33,43 +39,19 @@ public class orderdetalsboimpl implements orderdetalsbo {
     }
 
     @Override
-    public List<orderdetailsDto> loaditem() throws SQLException, ClassNotFoundException {
-//        List<orderdetailsDto> entityList = calledDao.getAll();
-//
-//        System.out.println("check data ana aka bo ge");
-//        System.out.println(entityList.get(0).getOrderId());
-//
-//        System.out.println(entityList.get(0).getOrderId());
-//        List<orderdetailsDto> dtoList = new ArrayList<>();
-//
-//        for (orderdetailsDto entity : entityList) {
-//
-//            // Check if the status is "pending"
-//            if () {
-//                OrderDto dto = new OrderDto();
-//                dto.setOrderId(entity.getOrderId());
-//                dto.setName(entity.getName());
-//                dto.setEmail(entity.getEmail());
-//                dto.setPhonenumber(entity.getPhonenumber());
-//                dto.setNote(entity.getNote());
-//                dto.setStatus(entity.getStatus());
-//                dto.setType(entity.getType());
-//                dto.setDate(entity.getDate());
-//
-//                dtoList.add(dto);
-//            }
-//        }
-//
-//        System.out.println("order bo ake aka ");
-//
-//        if (!dtoList.isEmpty()) {
-//            System.out.println(dtoList.get(0).getDate());
-//        } else {
-//            System.out.println("dtoList is empty");
-//        }
-//
-//        return dtoList;
-//    }
-        return null;
+    public boolean SaveFinalBillDetails(BillFinalDetals dto) throws SQLException, ClassNotFoundException {
+        FinalBillRecodeEntity entity  =new FinalBillRecodeEntity();
+        entity.setOrderid(dto.getOrderid());
+        entity.setEmail(dto.getEmail());
+        entity.setPhonenumber(dto.getPhonenumber());
+        entity.setTotalBillprise(dto.getTotalBillprise());
+        return daobillfinal.save(entity);
     }
+
+    @Override
+    public boolean PayComplte(PayBillDto dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+
 }

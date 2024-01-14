@@ -13,11 +13,10 @@ import javax.persistence.Id;
 @Getter
 @ToString
 @Entity
-public class FinalBillRecodeEntity {
+public class PaymentDetailsEntity {
     @Id
+    private long id;
     private String orderid;
-    private String Email ;
-    private String phonenumber ;
-    private Double TotalBillprise ;
-
+    private String Date;
+    private double TotalPrise ;
 }

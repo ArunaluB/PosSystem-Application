@@ -1,15 +1,11 @@
 package Edu.icet.BO.custom.impl;
 
 import Edu.icet.BO.custom.Orderbo;
-import Edu.icet.DAO.Custom.Itemdao;
 import Edu.icet.DAO.Custom.Orderdao;
-import Edu.icet.DAO.Custom.impl.Itemdaoimpl;
 import Edu.icet.DAO.Custom.impl.Orderdaoimpl;
-import Edu.icet.DAO.Util.SendMail;
+import Edu.icet.DAO.Util.CompleteEmail;
 import Edu.icet.DAO.Util.SendReceiptEmail;
 import Edu.icet.DTO.OrderDto;
-import Edu.icet.DTO.item;
-import Edu.icet.Entity.ItemEntity;
 import Edu.icet.Entity.OrderEntity;
 
 import javax.mail.MessagingException;
@@ -17,7 +13,29 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Edu.icet.DAO.Util.CompleteEmail.sendReceiptComplted;
+
 public class Orderboimpl implements Orderbo {
+    @Override
+    public boolean updateByCompele(OrderDto dto,String completed) throws SQLException, ClassNotFoundException {
+        OrderEntity entity = new OrderEntity();
+        entity.setOrderId(dto.getOrderId());
+        entity.setName(dto.getName());
+        entity.setPhonenumber(dto.getPhonenumber());
+        entity.setNote(dto.getNote());
+        entity.setType(dto.getType());
+        entity.setDate(dto.getDate());
+        if(completed.equalsIgnoreCase("completed")){
+            entity.setStatus("completed");
+        } else if (completed.equals("close")) {
+            entity.setStatus("Close");
+        }
+        entity.setOrderidnatural(dto.getOrderId());
+
+        return calledDao.update(entity) ;
+
+    }
+
     private Orderdao calledDao= new Orderdaoimpl();
     private static String orderIdSaveThis ;
     @Override
@@ -192,6 +210,7 @@ public class Orderboimpl implements Orderbo {
         entity.setType(dto.getType());
         entity.setDate(dto.getDate());
         entity.setStatus("Processing");
+       // entity.setStatus("Pppp");
         entity.setOrderidnatural(dto.getOrderId());
         return calledDao.update(entity) ;
     }
