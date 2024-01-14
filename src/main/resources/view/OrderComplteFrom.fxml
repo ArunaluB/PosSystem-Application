@@ -55,10 +55,10 @@
                                 <Font name="System Bold" size="10.0" />
                             </font>
                         </Label>
-                  <Label fx:id="nametxt" layoutX="22.0" layoutY="137.0" prefHeight="27.0" prefWidth="216.0" text="Label" />
-                  <Label fx:id="txtphone" layoutX="22.0" layoutY="188.0" prefHeight="27.0" prefWidth="216.0" text="Label" />
-                  <Label fx:id="txtemail" layoutX="22.0" layoutY="230.0" prefHeight="27.0" prefWidth="216.0" text="Label" />
-                  <Label fx:id="txtdate" layoutX="22.0" layoutY="278.0" prefHeight="27.0" prefWidth="216.0" text="Label" />
+                  <TextField fx:id="nametxt" layoutX="20.0" layoutY="137.0" prefHeight="25.0" prefWidth="216.0" />
+                  <TextField fx:id="txtcantac" layoutX="20.0" layoutY="188.0" prefHeight="25.0" prefWidth="216.0" />
+                  <TextField fx:id="txtemail" layoutX="20.0" layoutY="238.0" prefHeight="25.0" prefWidth="216.0" />
+                  <TextField fx:id="txtdate" layoutX="20.0" layoutY="287.0" prefHeight="25.0" prefWidth="216.0" />
                     </children>
                     <effect>
                         <DropShadow height="9.28" radius="4.14" width="9.28" />
@@ -94,25 +94,33 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                  <Label fx:id="priseunittxt" layoutX="24.0" layoutY="160.0" prefHeight="27.0" prefWidth="216.0" text="Label" />
-                  <Label layoutX="24.0" layoutY="194.0" prefHeight="15.0" prefWidth="98.0" text="Item Quntity">
+                  <Label layoutX="24.0" layoutY="194.0" prefHeight="15.0" prefWidth="98.0" text="Item Quantity">
                      <font>
                         <Font name="System Bold" size="10.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="quintitytextfeils" layoutX="22.0" layoutY="209.0" prefHeight="25.0" prefWidth="203.0" />
+                  <TextField fx:id="txtqun" layoutX="22.0" layoutY="209.0" prefHeight="25.0" prefWidth="203.0" />
                   <Label layoutX="24.0" layoutY="244.0" prefHeight="15.0" prefWidth="98.0" text="Item Total Prise">
                      <font>
                         <Font name="System Bold" size="10.0" />
                      </font>
                   </Label>
-                  <Label fx:id="totalitem" layoutX="24.0" layoutY="259.0" prefHeight="27.0" prefWidth="216.0" text="Label" />
+                  <TextField fx:id="txtprise" layoutX="21.0" layoutY="161.0" prefHeight="25.0" prefWidth="203.0" />
+                  <TextField fx:id="quntp" layoutX="22.0" layoutY="266.0" prefHeight="25.0" prefWidth="203.0" />
+                  <Button layoutX="225.0" layoutY="210.0" mnemonicParsing="false" onAction="#btncallitemOnAction" prefHeight="22.0" prefWidth="39.0" style="-fx-background-color: RED;" text="cal" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                     </children>
                     <effect>
                         <DropShadow height="9.28" radius="4.14" width="9.28" />
                     </effect>
                 </Pane>
-                <Pane layoutX="626.0" layoutY="93.0" prefHeight="272.0" prefWidth="203.0" style="-fx-background-color: white;">
+                <Pane layoutX="624.0" layoutY="242.0" prefHeight="272.0" prefWidth="203.0" style="-fx-background-color: white;">
                     <children>
                         <Pane prefHeight="37.0" prefWidth="203.0" style="-fx-background-color: #5758BB;">
                             <children>
@@ -143,7 +151,7 @@
                      </font>
                   </Label>
                   <Label fx:id="lblBookingId1" prefHeight="25.0" prefWidth="105.0" />
-                  <Label fx:id="Totalcalvalue" layoutX="31.0" layoutY="191.0" prefHeight="25.0" prefWidth="105.0" />
+                  <Label fx:id="Totalcalvalue" layoutX="31.0" layoutY="191.0" prefHeight="25.0" prefWidth="141.0" />
                   <Button layoutX="31.0" layoutY="226.0" mnemonicParsing="false" onAction="#btnComplteOnAction" prefHeight="24.0" prefWidth="141.0" style="-fx-background-color: green;" text="Complted order" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="11.0" />
@@ -157,17 +165,19 @@
                         <DropShadow height="9.28" radius="4.14" width="9.28" />
                     </effect>
                 </Pane>
-                <TableView fx:id="tableView" layoutX="28.0" layoutY="378.0" prefHeight="214.0" prefWidth="801.0" stylesheets="@../Style/tableViewStyle.css">
+                <TableView fx:id="tableView" layoutX="71.0" layoutY="378.0" prefHeight="214.0" prefWidth="477.0" stylesheets="@../Style/tableViewStyle.css">
                     <columns>
-                        <TableColumn fx:id="colBId" prefWidth="90.0" text="Order Id" />
-                        <TableColumn fx:id="colCarNo" prefWidth="82.0" text="ItemId" />
-                        <TableColumn fx:id="colBrand" prefWidth="125.0" text="Customer Nme" />
-                        <TableColumn fx:id="colDrId" prefWidth="207.0" text="ITEM Name" />
-                        <TableColumn fx:id="colCusId" prefWidth="111.0" text="Unit Prise " />
-                        <TableColumn fx:id="colPickUpDate" prefWidth="86.0" text="Quntity" />
-                        <TableColumn fx:id="colDays" prefWidth="99.0" text="Amount" />
+                        <TableColumn fx:id="colITname" prefWidth="172.0" text="ITEM NAME" />
+                        <TableColumn fx:id="colUnitPrise" prefWidth="116.0" text="Unit Price" />
+                        <TableColumn fx:id="colquan" prefWidth="96.0" text="Quantity" />
+                        <TableColumn fx:id="colAmount" prefWidth="92.0" text="Amount" />
                     </columns>
                 </TableView>
+            <ImageView fitHeight="181.0" fitWidth="200.0" layoutX="626.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/complte.jpg" />
+               </image>
+            </ImageView>
             </children></Pane>
         <Label layoutX="21.0" layoutY="55.0" text="E&amp;E" textFill="WHITE">
             <font>

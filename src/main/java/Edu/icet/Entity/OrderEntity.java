@@ -33,18 +33,18 @@ public class OrderEntity {
     private String Status;
 
 
-
-    public OrderEntity(String orderId, String orderidnatural, String name, String email, String phonenumber, String note, String date, String type, String status) {
-        OrderId = orderId;
-        this.orderidnatural = orderidnatural;
-        Name = name;
-        Email = email;
-        this.phonenumber = phonenumber;
-        this.note = note;
-        this.date = date;
-        Type = type;
-        Status = status;
-    }
-    @OneToMany(mappedBy = "order")
-    private List<OrderdetailsEntity> orders = new ArrayList<>();
+//
+//    public OrderEntity(String orderId, String orderidnatural, String name, String email, String phonenumber, String note, String date, String type, String status) {
+//        OrderId = orderId;
+//        this.orderidnatural = orderidnatural;
+//        Name = name;
+//        Email = email;
+//        this.phonenumber = phonenumber;
+//        this.note = note;
+//        this.date = date;
+//        Type = type;
+//        Status = status;
+//    }
+//    @OneToMany(mappedBy = "order")
+//    private List<OrderdetailsEntity> orders = new ArrayList<>();
 }

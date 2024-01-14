@@ -12,23 +12,33 @@ import javax.persistence.*;
 @Entity
 @Table(name = "orderdatails")
 public class OrderdetailsEntity {
+    @Id
+    private Long id;
 
-    // map id akata anne key ake variyable name tila
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    @EmbeddedId
-    private OrderCompositeKey id;
-    private int quantity;
-    private float subtotal;
+    public Long getId() {
+        return id;
+    }
 
-    @ManyToOne
-   // @MapsId("Cusid")
-    @JoinColumn(name = "id")
-    ItemEntity item;
-
-    @ManyToOne
-  //  @MapsId("orderid")
-    @JoinColumn(name = "OrderId")
-    OrderEntity order;
+//    // map id akata anne key ake variyable name tila
+//
+//    @EmbeddedId
+//    private OrderCompositeKey id;
+//    private int quantity;
+//    private float subtotal;
+//
+//    @ManyToOne
+//   // @MapsId("Cusid")
+//    @JoinColumn(name = "id")
+//    ItemEntity item;
+//
+//    @ManyToOne
+//  //  @MapsId("orderid")
+//    @JoinColumn(name = "OrderId")
+//    OrderEntity order;
 
 
 }

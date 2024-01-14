@@ -20,6 +20,7 @@ public interface Orderbo extends SuperBo {
     OrderDto searchByOrderdetails(String itemname) throws MessagingException;
 
     List<OrderDto> loaditem() throws SQLException, ClassNotFoundException;
+    List<OrderDto> alldata () throws SQLException, ClassNotFoundException;
 
     boolean updateItem(OrderDto dto) throws SQLException, ClassNotFoundException;
 

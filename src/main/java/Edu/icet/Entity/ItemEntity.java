@@ -36,16 +36,16 @@ public class ItemEntity {
     private String color;
     private String avalible;
 
-    public ItemEntity(long id, String productname, Double prise, String imgsrc, String type, String color, String avalible) {
-        this.id = id;
-        Productname = productname;
-        Prise = prise;
-        Imgsrc = imgsrc;
-        this.type = type;
-        this.color = color;
-        this.avalible = avalible;
-    }
+//    public ItemEntity(long id, String productname, Double prise, String imgsrc, String type, String color, String avalible) {
+//        this.id = id;
+//        Productname = productname;
+//        Prise = prise;
+//        Imgsrc = imgsrc;
+//        this.type = type;
+//        this.color = color;
+//        this.avalible = avalible;
+//    }
 
-    @OneToMany(mappedBy = "item")
-    private List<OrderdetailsEntity> orders = new ArrayList<>();
+//    @OneToMany(mappedBy = "item")
+//    private List<OrderdetailsEntity> orders = new ArrayList<>();
 }

@@ -162,6 +162,27 @@ public class Orderboimpl implements Orderbo {
     }
 
     @Override
+    public List<OrderDto> alldata() throws SQLException, ClassNotFoundException {
+        List<OrderEntity> entityList = calledDao.getAll();
+        List<OrderDto> dtoList = new ArrayList<>();
+        for (OrderEntity entity : entityList) {
+            OrderDto dto = new OrderDto();
+            dto.setOrderId(entity.getOrderId());
+            dto.setName(entity.getName());
+            dto.setEmail(entity.getEmail());
+            dto.setPhonenumber(entity.getPhonenumber());
+            dto.setNote(entity.getNote());
+            dto.setStatus(entity.getStatus());
+            dto.setType(entity.getType());
+            dto.setDate(entity.getDate());
+
+            dtoList.add(dto);
+        }
+        return dtoList;
+    }
+
+
+    @Override
     public boolean updateItem(OrderDto dto) throws SQLException, ClassNotFoundException {
         OrderEntity entity = new OrderEntity();
         entity.setOrderId(dto.getOrderId());
