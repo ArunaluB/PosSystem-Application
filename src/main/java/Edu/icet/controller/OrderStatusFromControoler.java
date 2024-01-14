@@ -3,6 +3,7 @@ package Edu.icet.controller;
 import Edu.icet.BO.custom.Orderbo;
 import Edu.icet.BO.custom.impl.Orderboimpl;
 import Edu.icet.DTO.OrderDto;
+import Edu.icet.DTO.item;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
 import javax.mail.MessagingException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -83,4 +85,15 @@ public class OrderStatusFromControoler {
 
 
     }
+    @FXML
+    void closeOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+        Orderbo bocall = new Orderboimpl();
+        OrderDto itemdto = new OrderDto();
+        String OrderId = txtOderid.getText();
+        itemdto.setOrderId(OrderId);
+        String set = "close";
+        bocall.updateByCompele(itemdto,set);
+
+    }
+
 }

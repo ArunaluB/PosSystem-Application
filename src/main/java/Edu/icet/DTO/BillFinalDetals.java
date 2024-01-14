@@ -1,23 +1,17 @@
-package Edu.icet.Entity;
+package Edu.icet.DTO;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 @NoArgsConstructor
 @Setter
 @Getter
 @ToString
-@Entity
-public class FinalBillRecodeEntity {
-    @Id
+public class BillFinalDetals {
     private String orderid;
     private String Email ;
     private String phonenumber ;
     private Double TotalBillprise ;
-
 }

@@ -6,6 +6,8 @@ import Edu.icet.BO.custom.impl.itemboimpl;
 import Edu.icet.BO.custom.impl.orderdetalsboimpl;
 import Edu.icet.BO.custom.itembo;
 import Edu.icet.BO.custom.orderdetalsbo;
+import Edu.icet.DAO.Util.CompleteEmail;
+import Edu.icet.DTO.BillFinalDetals;
 import Edu.icet.DTO.OrderDto;
 import Edu.icet.DTO.Tm.ordersdetalsTm;
 import Edu.icet.DTO.item;
@@ -21,6 +23,8 @@ import javafx.scene.layout.Pane;
 
 import javax.mail.MessagingException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class OrderComplteFromController {
@@ -86,6 +90,7 @@ public class OrderComplteFromController {
     private TableColumn<?, ?> colAmount;
     private static  String type;
     private static double Amount;
+    private static double serviceincludeBill ;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         setCellValueFactory();
@@ -162,26 +167,52 @@ public class OrderComplteFromController {
     void btnCalTotalOnAction(ActionEvent event) {
         double Servisecharge = Double.parseDouble(txtservisecharge.getText());
         double TotalBill=Servisecharge+Amount;
+        serviceincludeBill = TotalBill;
         Totalcalvalue.setText(String.valueOf(TotalBill));
     }
 
     @FXML
-    void btnComplteOnAction(ActionEvent event) {
+    void btnComplteOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
 
-//        // Clear all text fields
-//        comboOrderId.setValue(null);
-//        nametxt.clear();
-//        txtcantac.clear();
-//        txtemail.clear();
-//        txtdate.clear();
-//        comboItemName.setValue(null);
-//        txtqun.clear();
-//        txtprise.clear();
-//        quntp.clear();
-//        txtservisecharge.clear();
-//        Totalcalvalue.setText("");
-          orderDetailsList.clear();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = dateFormat.format(new Date());
+        Orderbo bo = new Orderboimpl();
+        OrderDto dto = new OrderDto();
+        dto.setOrderId(comboOrderId.getValue());
+        dto.setName(nametxt.getText());
+        dto.setEmail(txtemail.getText());
+        System.out.println(txtemail.getText());
+        dto.setPhonenumber(txtcantac.getText());
+        dto.setType(String.valueOf(Totalcalvalue));
+        dto.setDate(currentDate);
+        dto.setStatus("Completed bring your items");
+        dto.setNote(txtdate.getText());
+        String pass = "completed";
+        bo.updateByCompele(dto, pass);
+        CompleteEmail.sendReceiptComplted(dto);
 
+        // final bill table
+        BillFinalDetals billdto = new BillFinalDetals();
+        billdto.setOrderid(comboOrderId.getValue());
+        billdto.setEmail(txtemail.getText());
+        billdto.setPhonenumber(txtcantac.getText());
+        billdto.setTotalBillprise(serviceincludeBill);
+        orderdetalsbo boset = new orderdetalsboimpl();
+        boset.SaveFinalBillDetails(billdto);
+
+        // Clear all text fields
+//        // comboOrderId.setValue(null);
+        nametxt.setText("");
+        txtcantac.setText("");
+        txtemail.setText("");
+        txtdate.setText("");
+//        //   comboItemName.setValue(null);
+        txtqun.setText("");
+        txtprise.setText("");
+        quntp.setText("");
+        txtservisecharge.setText("");
+        Totalcalvalue.setText("");
+        orderDetailsList.clear();
     }
 
     @FXML
