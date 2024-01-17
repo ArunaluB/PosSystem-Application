@@ -24,6 +24,8 @@ import javafx.scene.layout.Pane;
 import javax.mail.MessagingException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -140,11 +142,15 @@ public class OrderComplteFromController {
     void btnAdditemOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         // Step 1: Create an instance of orderdetailsDto
         orderdetailsDto orderDetailsDto = new orderdetailsDto();
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = currentDate.format(formatter);
+        orderDetailsDto.setDate(formattedDate);
 
         // Step 2: Retrieve values from text fields and set them in the orderDetailsDto object
         orderDetailsDto.setProductname(comboItemName.getValue());
         orderDetailsDto.setPrise(Double.parseDouble(txtprise.getText()));
-        orderDetailsDto.setDate(txtdate.getText()); // Modify this according to your needs
+       // orderDetailsDto.setDate(txtdate.getText()); // Modify this according to your needs
         orderDetailsDto.setOrderId(comboOrderId.getValue());
         orderDetailsDto.setEmail(txtemail.getText());
         orderDetailsDto.setPhonenumber(txtcantac.getText());
@@ -245,6 +251,10 @@ public class OrderComplteFromController {
 
     @FXML
     void cmbOrderOnAction(ActionEvent event) throws MessagingException {
+        orderdetailsDto orderDetailsDto = new orderdetailsDto();
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = currentDate.format(formatter);
         String orderId = comboOrderId.getValue();
         Orderbo bo = new Orderboimpl();
         OrderDto dto = bo.searchByOrderdetails(orderId);
@@ -252,7 +262,7 @@ public class OrderComplteFromController {
         txtcantac.setText(dto.getPhonenumber());
         txtemail.setText(dto.getEmail());
         System.out.println(dto.getDate());
-        txtdate.setText(dto.getNote());
+        txtdate.setText(formattedDate);
         type = dto.getType();
     }
 }
