@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="650.0" prefWidth="1050.0" style="-fx-background-color: #5758BB;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Edu.icet.controller.ReportFromController">
+    <children>
+        <Pane layoutX="176.0" layoutY="20.0" prefHeight="610.0" prefWidth="855.0" style="-fx-background-color: f5f1f8; -fx-background-radius: 10;">
+            <children>
+                <Button layoutX="617.0" layoutY="210.0" mnemonicParsing="false" onAction="#btnViewCusReportOnAction" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #3d3e9a;" text="VIEW CUSTOMER REPORT" textFill="WHITE" />
+                <ImageView fitHeight="570.0" fitWidth="578.0" layoutX="39.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/reportIllust.png" />
+                    </image></ImageView>
+                <Label layoutX="39.0" layoutY="43.0" text="VIEW REPORTS" textFill="#3d3e9a">
+                    <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                    </font>
+                </Label>
+            <Label alignment="CENTER" layoutX="609.0" layoutY="295.0" prefHeight="19.0" prefWidth="210.0" text="Sales Report" textFill="#0d0d0d">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Button layoutX="602.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnDailselReportOnAction" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #3d3e9a;" text="Daily" textFill="WHITE" />
+            <Button layoutX="712.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnmouthdaReportOnAction" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #3d3e9a;" text="Month" textFill="WHITE" />
+            <Button layoutX="652.0" layoutY="367.0" mnemonicParsing="false" onAction="#btnAnuwalDaReportOnAction" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #3d3e9a;" text="Annual " textFill="WHITE" />
+            <Button layoutX="616.0" layoutY="245.0" mnemonicParsing="false" onAction="#OrderOneCusOnAction" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #3d3e9a;" text="VIEW ONE CUSTOMER REPORT" textFill="WHITE" />
+            </children></Pane>
+        <Label layoutX="29.0" layoutY="52.0" text="APEX" textFill="WHITE">
+            <font>
+                <Font name="Felix Titling" size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="81.0" layoutY="60.0" text="AUTO RENTAL" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="11.0" />
+            </font>
+        </Label>
+        <Button layoutX="-8.0" layoutY="123.0" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="22.0" prefWidth="184.0" style="-fx-background-color: #5758BB;" text="                  DASHBOARD" textFill="WHITE">
+            <font>
+                <Font name="Corbel" size="12.0" />
+            </font>
+        </Button>
+        <Button layoutX="-8.0" layoutY="155.0" mnemonicParsing="false" onAction="#btnCustomerOnAction" prefHeight="22.0" prefWidth="184.0" style="-fx-background-color: #5758BB;" text="               CUSTOMER" textFill="WHITE">
+            <font>
+                <Font name="Corbel" size="12.0" />
+            </font>
+        </Button>
+        <Button layoutX="-8.0" layoutY="189.0" mnemonicParsing="false" onAction="#btnDriverOnAction" prefHeight="22.0" prefWidth="184.0" style="-fx-background-color: #5758BB;" text="       DRIVER" textFill="WHITE">
+            <font>
+                <Font name="Corbel" size="12.0" />
+            </font>
+        </Button>
+        <Button layoutX="-8.0" layoutY="224.0" mnemonicParsing="false" onAction="#btnCarOnAction" prefHeight="22.0" prefWidth="184.0" style="-fx-background-color: #5758BB;" text="CAR" textFill="WHITE">
+            <font>
+                <Font name="Corbel" size="12.0" />
+            </font>
+        </Button>
+        <Button layoutX="-8.0" layoutY="260.0" mnemonicParsing="false" onAction="#btnBookingOnAction" prefHeight="22.0" prefWidth="184.0" style="-fx-background-color: #5758BB;" text="            BOOKING" textFill="WHITE">
+            <font>
+                <Font name="Corbel" size="12.0" />
+            </font>
+        </Button>
+        <Button layoutX="-8.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnPaymentOnAction" prefHeight="22.0" prefWidth="184.0" style="-fx-background-color: #5758BB;" text="            PAYMENT" textFill="WHITE">
+            <font>
+                <Font name="Corbel" size="12.0" />
+            </font>
+        </Button>
+        <Button layoutX="-8.0" layoutY="332.0" mnemonicParsing="false" onAction="#btnSalaryOnAction" prefHeight="22.0" prefWidth="184.0" style="-fx-background-color: #5758BB;" text="        SALARY" textFill="WHITE">
+            <font>
+                <Font name="Corbel" size="12.0" />
+            </font>
+        </Button>
+        <Button layoutX="-8.0" layoutY="421.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="184.0" style="-fx-background-color: #3d3e9a;" text="        REPORT" textFill="#e9c90e">
+            <font>
+                <Font name="Corbel Bold" size="12.0" />
+            </font>
+        </Button>
+        <Pane layoutX="5.0" layoutY="401.0" opacity="0.19" prefHeight="3.0" prefWidth="165.0" style="-fx-background-color: f5f1f8;" />
+        <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="38.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/add.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="22.0" fitWidth="16.0" layoutX="37.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/booking(2).png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="36.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/booking(2).png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="34.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/booking(2).png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="36.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/booking(2).png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="25.0" fitWidth="16.0" layoutX="36.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/booking(2).png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="36.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/booking(2).png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="36.0" layoutY="424.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/booking(2).png" />
+            </image>
+        </ImageView>
+        <Button layoutX="-8.0" layoutY="608.0" mnemonicParsing="false" onAction="#btnLogoutOnAction" prefHeight="22.0" prefWidth="184.0" style="-fx-background-color: #5758BB;" text="     Logout" textFill="WHITE">
+            <font>
+                <Font name="Corbel" size="12.0" />
+            </font>
+        </Button>
+        <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="38.0" layoutY="611.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/booking(2).png" />
+            </image>
+        </ImageView>
+        <Button layoutX="-7.0" layoutY="366.0" mnemonicParsing="false" onAction="#btnAdminOnAction" prefHeight="22.0" prefWidth="183.0" style="-fx-background-color: #5758BB;" text="                         ADMIN MANAGE" textFill="WHITE">
+            <font>
+                <Font name="Corbel" size="12.0" />
+            </font>
+        </Button>
+        <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="37.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/booking(2).png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

@@ -30,7 +30,7 @@ public class Orderboimpl implements Orderbo {
         } else if (completed.equals("close")) {
             entity.setStatus("Close");
         }
-        entity.setOrderidnatural(dto.getOrderId());
+      //  entity.setOrderidnatural(dto.getOrderId());
 
         return calledDao.update(entity) ;
 
@@ -211,7 +211,7 @@ public class Orderboimpl implements Orderbo {
         entity.setDate(dto.getDate());
         entity.setStatus("Processing");
        // entity.setStatus("Pppp");
-        entity.setOrderidnatural(dto.getOrderId());
+     //   entity.setOrderidnatural(dto.getOrderId());
         return calledDao.update(entity) ;
     }
 

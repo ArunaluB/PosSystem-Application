@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,6 +34,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ItemFromControler implements Initializable{
+
+    @FXML
+    private AnchorPane rootNode;
+
 
     @FXML
     private VBox Choseitem;
@@ -162,7 +167,7 @@ public class ItemFromControler implements Initializable{
             itemcontrooler itemcontrooler =  fxmlLoader.getController();
             itemcontrooler.setData(Items.get(i),myListener);
 
-            if (column == 3) {
+            if (column == 2) {
                 column = 0;
                 row++;
             }
@@ -232,11 +237,81 @@ public class ItemFromControler implements Initializable{
     public void UpdateOnAction(ActionEvent actionEvent) throws MessagingException, IOException {
         itembo bo = new itemboimpl();
         bo.setIteamname(productNameUse);
-        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/ItemUpdate.fxml"));
+//        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/ItemUpdate.fxml"));
+//        Scene scene = new Scene(rootNode);
+//
+//        Stage stage =  (Stage) this.updatebutton.getScene().getWindow();
+//        stage.setScene(scene);
+//        stage.centerOnScreen();
+//        stage.show();
+        Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/ItemUpdate.fxml"));
+        Scene updateScene = new Scene(updateRoot);
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Update Item");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
+
+
+    }
+
+    public void btnCustomerOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnDriverOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnCarOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnBookingOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnPaymentOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnSalaryOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnReportOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnAdminOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnLogoutOnAction(ActionEvent actionEvent) {
+    }
+
+
+    public void ItemOnAction(ActionEvent actionEvent) throws IOException {
+        Parent rootNode = FXMLLoader.load(getClass().getResource("/view/ItemAddForm.fxml"));
         Scene scene = new Scene(rootNode);
-        Stage stage = (Stage) this.updatebutton.getScene().getWindow();
-        stage.setScene(scene);
-        stage.centerOnScreen();
-        stage.show();
+        Stage newStage = new Stage();
+        newStage.setTitle("ItemADD");
+        newStage.setScene(scene);
+        newStage.setResizable(false);
+        newStage.show();
+//        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+//        stage.setTitle("ItemAddFrom");
+//        stage.setScene(scene);
+//        stage.centerOnScreen();
+    }
+
+    public void ItemRemoveOnAction(ActionEvent actionEvent) throws IOException {
+//        Parent rootNode = FXMLLoader.load(getClass().getResource("/view/itemDeleteForm.fxml"));
+//        Scene scene = new Scene(rootNode);
+//        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+//        stage.setTitle("ItemRemove");
+//        stage.setScene(scene);
+//        stage.centerOnScreen();
+        Parent rootNode = FXMLLoader.load(getClass().getResource("/view/itemDeleteForm.fxml"));
+        Scene scene = new Scene(rootNode);
+
+        Stage newStage = new Stage();
+        newStage.setTitle("ItemRemove");
+        newStage.setScene(scene);
+        newStage.setResizable(false);
+        newStage.show();
     }
 }
