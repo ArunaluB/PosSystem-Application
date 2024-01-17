@@ -17,13 +17,27 @@ public class ADMINDashboardFromControler {
     private AnchorPane rootNode;
 
     @FXML
-    void UserADDOnAction(ActionEvent event) {
+    void UserADDOnAction(ActionEvent event) throws IOException {
+        Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/RegisterFrom.fxml"));
+        Scene updateScene = new Scene(updateRoot);
 
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Customer Add From");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
     }
 
     @FXML
-    void UserRemoveONAction(ActionEvent event) {
+    void UserRemoveONAction(ActionEvent event) throws IOException {
+        Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/DeleteFrom.fxml"));
+        Scene updateScene = new Scene(updateRoot);
 
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Customer Add From");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
     }
 
 
@@ -152,9 +166,32 @@ public class ADMINDashboardFromControler {
     }
 
     @FXML
-    void placeorderOnAction(ActionEvent event) {
+    void placeorderOnAction(ActionEvent event) throws IOException {
+        Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/OderFirestStepFrom.fxml"));
 
+        Scene updateScene = new Scene(updateRoot);
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Order place");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
     }
 
 
+    public void btnReportOnOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ReportFrom.fxml"));
+        Parent updateRoot = loader.load();
+        Scene updateScene = new Scene(updateRoot);
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Request View");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
+
+        // You can close the current stage if needed
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
+    }
 }

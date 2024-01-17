@@ -145,8 +145,15 @@ public class EmployeeDashboadFromControler implements Initializable {
     }
 
     @FXML
-    void placeorderOnAction(ActionEvent event) {
+    void placeorderOnAction(ActionEvent event) throws IOException {
+        Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/OderFirestStepFrom.fxml"));
+        Scene updateScene = new Scene(updateRoot);
 
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Order place");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
     }
 
     @Override

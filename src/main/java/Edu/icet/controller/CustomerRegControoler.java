@@ -5,6 +5,7 @@ import Edu.icet.BO.custom.impl.customerboimpl;
 import Edu.icet.DTO.CustomerDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -52,6 +53,11 @@ public class CustomerRegControoler {
             customerbo calledbo = new customerboimpl();
             calledbo.saveCustomer(dto);
             System.out.println(dto);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Successful");
+            alert.setHeaderText("Customer is  Registered");
+            alert.setContentText("This Customer is registered");
+            alert.showAndWait();
 
         }else {
             if (!isValidemail) {

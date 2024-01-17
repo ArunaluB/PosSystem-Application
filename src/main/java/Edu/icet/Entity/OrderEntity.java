@@ -20,10 +20,11 @@ public class OrderEntity {
 
 
     @Id
-    private String OrderId;
     @NaturalId
     @Column(name = "orderid", unique = true)
-    private String orderidnatural;
+    private String OrderId;
+
+    //private String orderidnatural;
     private String Name;
     private String Email;
     private String phonenumber;
