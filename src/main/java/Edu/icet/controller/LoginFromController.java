@@ -72,6 +72,8 @@ public class LoginFromController {
         System.out.println("Controoler case"+type);
     }
 
+
+
 //    public void EmployeeDashGo() throws IOException {
 //        try {
 //            Parent rootNode = FXMLLoader.load(getClass().getResource("/view/EmployeeDashboadFrom.fxml"));
