@@ -32,6 +32,8 @@ public class Userboimpl implements userbo {
     private int count = 1;
     private Userdao usercalldao = new Userdaoimpl();
 
+    private static  String UserType;
+
     @Override
     public boolean saveUser(UserDto dto) throws SQLException, ClassNotFoundException {
 
@@ -79,13 +81,17 @@ public class Userboimpl implements userbo {
         LoginFromController obj = new LoginFromController();
          if(Type.equals("Admin")){
              System.out.println("admin");
-            // obj.AdminDashGo();
+             UserType = "Admin";
+             obj.setdata(UserType);
          } else {
              System.out.println("user");
-            // obj.EmployeeDashGo();
-            obj.setdata(Type);
+            UserType = "Employee";
+            obj.setdata(UserType);
          }
 
+    }
+    public String getUserType(){
+        return UserType;
     }
 
     @Override

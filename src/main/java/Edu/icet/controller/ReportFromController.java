@@ -94,35 +94,18 @@ public class ReportFromController {
         LoginFromController obj = new LoginFromController();
         String logintoinde = obj.getLogDetails();
         System.out.println("logo detals tika"+logintoinde);
-        if(logintoinde.equals("Employee")){
 
-            // Close the current stage
-            Stage currentStage = (Stage) rootNode.getScene().getWindow();
-            currentStage.close();
+        Parent rootNode = FXMLLoader.load(getClass().getResource("/view/ADMINDashboardFrom.fxml"));
+        Scene scene = new Scene(rootNode);
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setTitle("Admin Dashboard");
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+        // Close the current stage
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
 
-            Parent rootNode = FXMLLoader.load(getClass().getResource("/view/EmployeeDashboadFrom.fxml"));
-            Scene scene = new Scene(rootNode);
-            Stage stage = new Stage(); // Create a new stage for the Employee Dashboard
-            stage.setTitle("Employee Dashboard");
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.show();
-
-
-        } else if (logintoinde.equals("Admin")) {
-
-            Parent rootNode = FXMLLoader.load(getClass().getResource("/view/ADMINDashboardFrom.fxml"));
-            Scene scene = new Scene(rootNode);
-            Stage stage = (Stage) this.rootNode.getScene().getWindow();
-            stage.setTitle("Admin Dashboard");
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.show();
-            // Close the current stage
-            Stage currentStage = (Stage) rootNode.getScene().getWindow();
-            currentStage.close();
-
-        }
 
     }
 

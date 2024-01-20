@@ -329,16 +329,15 @@ public class ItemFromControler implements Initializable{
     @FXML
     void btndashOnAction(ActionEvent event) throws IOException {
         LoginFromController obj = new LoginFromController();
-        String logintoinde = obj.getLogDetails();
-        System.out.println("logo detals tika"+logintoinde);
+        String logintoinde = obj.getLogin();
+        System.out.println(obj.getLogin());
+        System.out.println("Login Type: " + logintoinde);
+
         if(logintoinde.equals("Employee")){
 
             // Close the current stage
             Stage currentStage = (Stage) rootNode.getScene().getWindow();
             currentStage.close();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/OrderComplteFrom.fxml"));
-            Parent updateRoot = loader.load();
-            OrderComplteFromController orderComplteController = loader.getController();
 
             Parent rootNode = FXMLLoader.load(getClass().getResource("/view/EmployeeDashboadFrom.fxml"));
             Scene scene = new Scene(rootNode);

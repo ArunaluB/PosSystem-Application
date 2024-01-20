@@ -32,13 +32,13 @@ public class LoginFromController {
 
     public static String type;
 
-    private static String LogDetails;
+    public static String LogDetails;
     public void StartOnAction(ActionEvent actionEvent) throws IOException {
         String email = textemail.getText();
         String password = txtpass.getText();
         bocallcall.searchUser(email,password);
         System.out.println("ewrayyyyyyyyyyyyyyyyyyy");
-
+        System.out.println("Type check"+type);
         if(type.equals("Employee")){
             LogDetails = "Employee";
             // Close the current stage
@@ -51,25 +51,31 @@ public class LoginFromController {
             stage.setTitle("Employee Dashboard");
             stage.setScene(scene);
             stage.centerOnScreen();
+            stage.setResizable(false);
             stage.show();
 
-//            Parent rootNode = FXMLLoader.load(getClass().getResource("/view/EmployeeDashboadFrom.fxml"));
-//            Scene scene = new Scene(rootNode);
-//            Stage stage = (Stage) this.rootNode.getScene().getWindow();
-//            stage.setTitle("Employee Dashboard");
-//            stage.setScene(scene);
-//            stage.centerOnScreen();
-        } else if (type.equals("Admin")) {
+        } else if (type.equalsIgnoreCase("admin")) {
+            System.out.println("dan ckeck aka");
             LogDetails = "Admin";
-            Parent rootNode = FXMLLoader.load(getClass().getResource("/view/ADMINDashboardFrom.fxml"));
-            Scene scene = new Scene(rootNode);
-            Stage stage = (Stage) this.rootNode.getScene().getWindow();
-            stage.setTitle("Admin Dashboard");
-            stage.setScene(scene);
-            stage.centerOnScreen();
+            // Close the current stage
+            Stage currentStage = (Stage) rootNode.getScene().getWindow();
+            currentStage.close();
+
+            Parent adminRootNode = FXMLLoader.load(getClass().getResource("/view/ADMINDashboardFrom.fxml"));
+            Scene adminScene = new Scene(adminRootNode);
+            Stage adminStage = new Stage(); // Create a new stage for the Admin Dashboard
+            adminStage.setTitle("Admin Dashboard");
+            adminStage.setScene(adminScene);
+            adminStage.centerOnScreen();
+            adminStage.setResizable(false);
+            adminStage.show();
         }
 
 
+
+    }
+    public String getLogin() {
+        return type;
     }
 
     public void fogetOnAction(ActionEvent actionEvent) throws IOException {

@@ -288,8 +288,10 @@ public class OrderComplteFromController {
     @FXML
     void btnDashOnAction(ActionEvent event) throws IOException {
         LoginFromController obj = new LoginFromController();
-        String logintoinde = obj.getLogDetails();
-        System.out.println("logo detals tika"+logintoinde);
+        String logintoinde = obj.getLogin();
+        System.out.println(obj.getLogin());
+        System.out.println("Login Type: " + logintoinde);
+
         if(logintoinde.equals("Employee")){
 
             // Close the current stage
