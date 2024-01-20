@@ -16,12 +16,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -232,7 +237,18 @@ public class OrderComplteFromController {
     }
 
     @FXML
-    void btnLogoutOnAction(ActionEvent event) {
+    void btnLogoutOnAction(ActionEvent event) throws IOException {
+        // Close the current stage
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
+        Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/HomeFrom.fxml"));
+        Scene updateScene = new Scene(updateRoot);
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Home Page");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
 
     }
 
@@ -264,5 +280,81 @@ public class OrderComplteFromController {
         System.out.println(dto.getDate());
         txtdate.setText(formattedDate);
         type = dto.getType();
+    }
+
+    public void DashOnAction(ActionEvent actionEvent) throws IOException {
+
+    }
+    @FXML
+    void btnDashOnAction(ActionEvent event) throws IOException {
+        LoginFromController obj = new LoginFromController();
+        String logintoinde = obj.getLogin();
+        System.out.println(obj.getLogin());
+        System.out.println("Login Type: " + logintoinde);
+
+        if(logintoinde.equals("Employee")){
+
+            // Close the current stage
+            Stage currentStage = (Stage) rootNode.getScene().getWindow();
+            currentStage.close();
+
+            Parent rootNode = FXMLLoader.load(getClass().getResource("/view/EmployeeDashboadFrom.fxml"));
+            Scene scene = new Scene(rootNode);
+            Stage stage = new Stage(); // Create a new stage for the Employee Dashboard
+            stage.setTitle("Employee Dashboard");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+
+
+        } else if (logintoinde.equals("Admin")) {
+
+            Parent rootNode = FXMLLoader.load(getClass().getResource("/view/ADMINDashboardFrom.fxml"));
+            Scene scene = new Scene(rootNode);
+            Stage stage = (Stage) this.rootNode.getScene().getWindow();
+            stage.setTitle("Admin Dashboard");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+            // Close the current stage
+            Stage currentStage = (Stage) rootNode.getScene().getWindow();
+            currentStage.close();
+
+        }
+    }
+
+
+    public void btnStoreOnAction(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ItemFromNewVerstionFrom.fxml"));
+        Parent updateRoot = loader.load();
+        Scene updateScene = new Scene(updateRoot);
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Request View");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
+
+        // You can close the current stage if needed
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
+
+    }
+
+    public void btnRequestSOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RequestViewOpenFrom.fxml"));
+        Parent updateRoot = loader.load();
+        Scene updateScene = new Scene(updateRoot);
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Request View");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
+
+        // You can close the current stage if needed
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
     }
 }
