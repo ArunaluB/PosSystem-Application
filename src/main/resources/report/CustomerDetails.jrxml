@@ -56,7 +56,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="30" splitType="Stretch">
+		<band height="35" splitType="Stretch">
 			<staticText>
 				<reportElement x="100" y="0" width="340" height="30" forecolor="#FF0E0A" uuid="fef5702e-5c4f-45e6-b457-03731efae4f3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -123,7 +123,12 @@
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="250" y="12" width="54" height="30" uuid="e19026f4-7990-443a-9e96-19950c177c3b"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
