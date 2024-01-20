@@ -25,28 +25,12 @@ public class ReportFromController {
     @FXML
     private AnchorPane rootNode;
 
-    @FXML
-    void btnAdminOnAction(ActionEvent event) {
 
-    }
+
+
 
     @FXML
     void btnAnuwalDaReportOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnBookingOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnCarOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnCustomerOnAction(ActionEvent event) {
 
     }
 
@@ -56,27 +40,94 @@ public class ReportFromController {
     }
 
     @FXML
-    void btnDashboardOnAction(ActionEvent event) {
+    void btnLogoutOnAction(ActionEvent event) throws IOException {
+        // Close the current stage
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
+        Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/HomeFrom.fxml"));
+        Scene updateScene = new Scene(updateRoot);
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Home Page");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
+    }
+
+    @FXML
+    void btnRequestSOnAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/RequestViewOpenFrom.fxml"));
+        Parent updateRoot = loader.load();
+        Scene updateScene = new Scene(updateRoot);
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Request View");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
+
+        // You can close the current stage if needed
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
+    }
+
+    @FXML
+    void btnStoreOnAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ItemFromNewVerstionFrom.fxml"));
+        Parent updateRoot = loader.load();
+        Scene updateScene = new Scene(updateRoot);
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Store");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
+
+        // You can close the current stage if needed
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
+    }
+
+
+    @FXML
+    void btndashOnAction(ActionEvent event) throws IOException {
+        LoginFromController obj = new LoginFromController();
+        String logintoinde = obj.getLogDetails();
+        System.out.println("logo detals tika"+logintoinde);
+        if(logintoinde.equals("Employee")){
+
+            // Close the current stage
+            Stage currentStage = (Stage) rootNode.getScene().getWindow();
+            currentStage.close();
+
+            Parent rootNode = FXMLLoader.load(getClass().getResource("/view/EmployeeDashboadFrom.fxml"));
+            Scene scene = new Scene(rootNode);
+            Stage stage = new Stage(); // Create a new stage for the Employee Dashboard
+            stage.setTitle("Employee Dashboard");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+
+
+        } else if (logintoinde.equals("Admin")) {
+
+            Parent rootNode = FXMLLoader.load(getClass().getResource("/view/ADMINDashboardFrom.fxml"));
+            Scene scene = new Scene(rootNode);
+            Stage stage = (Stage) this.rootNode.getScene().getWindow();
+            stage.setTitle("Admin Dashboard");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+            // Close the current stage
+            Stage currentStage = (Stage) rootNode.getScene().getWindow();
+            currentStage.close();
+
+        }
 
     }
 
     @FXML
-    void btnDriverOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnLogoutOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnPaymentOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnSalaryOnAction(ActionEvent event) {
+    void btnmouthdaReportOnAction(ActionEvent event) {
 
     }
 
@@ -118,6 +169,18 @@ public class ReportFromController {
 
     }
 
+    @FXML
+    void btnComOnAction(ActionEvent event) throws IOException {
+        Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/OrderComplteFrom.fxml"));
+        Scene updateScene = new Scene(updateRoot);
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Order Complte ");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
+    }
 
     @FXML
     void OrderOneCusOnAction(ActionEvent event) throws IOException {
@@ -132,9 +195,4 @@ public class ReportFromController {
 
     }
 
-
-    @FXML
-    void btnmouthdaReportOnAction(ActionEvent event) {
-
-    }
 }

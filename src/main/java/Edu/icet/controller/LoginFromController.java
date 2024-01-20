@@ -32,7 +32,7 @@ public class LoginFromController {
 
     public static String type;
 
-    private static String LogDetails = "Employee";
+    private static String LogDetails;
     public void StartOnAction(ActionEvent actionEvent) throws IOException {
         String email = textemail.getText();
         String password = txtpass.getText();

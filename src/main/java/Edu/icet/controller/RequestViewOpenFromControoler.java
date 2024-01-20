@@ -138,11 +138,7 @@ public class RequestViewOpenFromControoler  {
         alert.showAndWait();
     }
 
-    public void btnADDCarOnAction(ActionEvent actionEvent) {
-    }
 
-    public void txtSEARCHOnAction(ActionEvent actionEvent) {
-    }
 
 
 
@@ -181,23 +177,7 @@ public class RequestViewOpenFromControoler  {
         }
     }
 
-    public void btnCustomerOnAction(ActionEvent actionEvent) {
-    }
 
-    public void btnDriverOnAction(ActionEvent actionEvent) {
-    }
-
-    public void btnBookingOnAction(ActionEvent actionEvent) {
-    }
-
-    public void btnPaymentOnAction(ActionEvent actionEvent) {
-    }
-
-    public void btnSalaryOnAction(ActionEvent actionEvent) {
-    }
-
-    public void btnReportOnAction(ActionEvent actionEvent) {
-    }
 
     public void btnLogoutOnAction(ActionEvent actionEvent) throws IOException {
         // Close the current stage
