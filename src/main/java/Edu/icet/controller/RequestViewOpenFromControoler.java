@@ -8,10 +8,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -141,7 +146,39 @@ public class RequestViewOpenFromControoler  {
 
 
 
-    public void btnDashboardOnAction(ActionEvent actionEvent) {
+    public void btnDashboardOnAction(ActionEvent actionEvent) throws IOException {
+        LoginFromController obj = new LoginFromController();
+        String logintoinde = obj.getLogDetails();
+        System.out.println("logo detals tika"+logintoinde);
+        if(logintoinde.equals("Employee")){
+
+            // Close the current stage
+            Stage currentStage = (Stage) rootNode.getScene().getWindow();
+            currentStage.close();
+
+            Parent rootNode = FXMLLoader.load(getClass().getResource("/view/EmployeeDashboadFrom.fxml"));
+            Scene scene = new Scene(rootNode);
+            Stage stage = new Stage(); // Create a new stage for the Employee Dashboard
+            stage.setTitle("Employee Dashboard");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+
+
+        } else if (logintoinde.equals("Admin")) {
+
+            Parent rootNode = FXMLLoader.load(getClass().getResource("/view/ADMINDashboardFrom.fxml"));
+            Scene scene = new Scene(rootNode);
+            Stage stage = (Stage) this.rootNode.getScene().getWindow();
+            stage.setTitle("Admin Dashboard");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+            // Close the current stage
+            Stage currentStage = (Stage) rootNode.getScene().getWindow();
+            currentStage.close();
+
+        }
     }
 
     public void btnCustomerOnAction(ActionEvent actionEvent) {
@@ -162,9 +199,50 @@ public class RequestViewOpenFromControoler  {
     public void btnReportOnAction(ActionEvent actionEvent) {
     }
 
-    public void btnLogoutOnAction(ActionEvent actionEvent) {
+    public void btnLogoutOnAction(ActionEvent actionEvent) throws IOException {
+        // Close the current stage
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
+        Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/HomeFrom.fxml"));
+        Scene updateScene = new Scene(updateRoot);
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Home Page");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
     }
 
     public void btnAdminOnAction(ActionEvent actionEvent) {
+
+    }
+
+    public void btnStoreOnAction(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ItemFromNewVerstionFrom.fxml"));
+        Parent updateRoot = loader.load();
+        Scene updateScene = new Scene(updateRoot);
+
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Store");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
+
+        // You can close the current stage if needed
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
+    }
+
+    public void btnComplteOnAction(ActionEvent actionEvent) throws IOException {
+        Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/OrderComplteFrom.fxml"));
+        Scene updateScene = new Scene(updateRoot);
+        Stage updateStage = new Stage();
+        updateStage.setTitle("Order Complte ");
+        updateStage.setScene(updateScene);
+        updateStage.setResizable(false);
+        updateStage.show();
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
     }
 }

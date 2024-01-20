@@ -20,6 +20,8 @@ public class EmployeeDashboadFromControler implements Initializable {
     @FXML
     private AnchorPane rootNode;
 
+  //  private static String LogDetails;
+
     @FXML
     void CusAddOnAction(ActionEvent event) throws IOException {
         Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/customerReg.fxml"));
@@ -159,5 +161,8 @@ public class EmployeeDashboadFromControler implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void btnReportOnAction(ActionEvent actionEvent) {
     }
 }

@@ -92,10 +92,12 @@ public class ADMINDashboardFromControler {
         updateStage.setScene(updateScene);
         updateStage.setResizable(false);
         updateStage.show();
+
     }
 
     @FXML
     void btnComplteOnAction(ActionEvent event) throws IOException {
+
         Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/OrderComplteFrom.fxml"));
         Scene updateScene = new Scene(updateRoot);
 
@@ -104,6 +106,9 @@ public class ADMINDashboardFromControler {
         updateStage.setScene(updateScene);
         updateStage.setResizable(false);
         updateStage.show();
+
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
 
     }
 
@@ -150,6 +155,7 @@ public class ADMINDashboardFromControler {
 
     @FXML
     void btnStoreOnAction(ActionEvent event) throws IOException {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ItemFromNewVerstionFrom.fxml"));
         Parent updateRoot = loader.load();
         Scene updateScene = new Scene(updateRoot);

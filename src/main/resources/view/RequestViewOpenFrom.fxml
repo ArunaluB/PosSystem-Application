@@ -60,85 +60,34 @@
                 <Font name="System Bold" size="11.0" />
             </font>
         </Label>
-        <Button layoutX="-8.0" layoutY="123.0" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="22.0" prefWidth="181.0" style="-fx-background-color: #5758BB;" text="                   DASHBOARD" textFill="WHITE">
+        <Button layoutY="169.0" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="22.0" prefWidth="170.0" style="-fx-background-color: #5758BB;" text="                   DASHBOARD" textFill="WHITE">
             <font>
                 <Font name="Corbel" size="12.0" />
             </font>
         </Button>
-        <Button layoutX="-8.0" layoutY="155.0" mnemonicParsing="false" onAction="#btnCustomerOnAction" prefHeight="22.0" prefWidth="181.0" style="-fx-background-color: #5758BB;" text="Store" textFill="WHITE">
+        <Button layoutX="-8.0" layoutY="232.0" mnemonicParsing="false" onAction="#btnStoreOnAction" prefHeight="22.0" prefWidth="181.0" style="-fx-background-color: #5758BB;" text="  Store" textFill="WHITE">
             <font>
                 <Font name="Corbel" size="12.0" />
             </font>
         </Button>
-        <Button layoutX="-8.0" layoutY="189.0" mnemonicParsing="false" onAction="#btnDriverOnAction" prefHeight="22.0" prefWidth="181.0" style="-fx-background-color: #5758BB;" text="       DRIVER" textFill="WHITE">
-            <font>
-                <Font name="Corbel" size="12.0" />
-            </font>
-        </Button>
-        <Button layoutX="-8.0" layoutY="224.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="181.0" style="-fx-background-color: #3d3e9a;" text="               View Request" textFill="#e9c90e">
+        <Button layoutY="286.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="170.0" style="-fx-background-color: #3d3e9a;" text="                      Requsest Show" textFill="#e9c90e">
             <font>
                 <Font name="Corbel Bold" size="12.0" />
             </font>
         </Button>
-        <Button layoutX="-8.0" layoutY="261.0" mnemonicParsing="false" onAction="#btnBookingOnAction" prefHeight="22.0" prefWidth="181.0" style="-fx-background-color: #5758BB;" text="           BOOKING" textFill="WHITE">
+        <Button layoutY="356.0" mnemonicParsing="false" onAction="#btnComplteOnAction" prefHeight="22.0" prefWidth="170.0" style="-fx-background-color: #5758BB;" text="                    Complte Order" textFill="WHITE">
             <font>
                 <Font name="Corbel" size="12.0" />
             </font>
         </Button>
-        <Button layoutX="-8.0" layoutY="295.0" mnemonicParsing="false" onAction="#btnPaymentOnAction" prefHeight="22.0" prefWidth="181.0" style="-fx-background-color: #5758BB;" text="            PAYMENT" textFill="WHITE">
-            <font>
-                <Font name="Corbel" size="12.0" />
-            </font>
-        </Button>
-        <Button layoutX="-8.0" layoutY="330.0" mnemonicParsing="false" onAction="#btnSalaryOnAction" prefHeight="22.0" prefWidth="181.0" style="-fx-background-color: #5758BB;" text="       SALARY" textFill="WHITE">
-            <font>
-                <Font name="Corbel" size="12.0" />
-            </font>
-        </Button>
-        <Button layoutX="-8.0" layoutY="423.0" mnemonicParsing="false" onAction="#btnReportOnAction" prefHeight="22.0" prefWidth="181.0" style="-fx-background-color: #5758BB;" text="         REPORT" textFill="WHITE">
-            <font>
-                <Font name="Corbel" size="12.0" />
-            </font>
-        </Button>
-        <Pane layoutX="5.0" layoutY="403.0" opacity="0.19" prefHeight="3.0" prefWidth="161.0" style="-fx-background-color: f5f1f8;" />
-        <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="38.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="32.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../img/dashboard.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="22.0" fitWidth="16.0" layoutX="37.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="27.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../img/dashboard(1).png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="36.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/dashboard(1).png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="34.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/Reuest.png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="36.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/dashboard(1).png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="25.0" fitWidth="16.0" layoutX="36.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/dashboard(1).png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="36.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/dashboard(1).png" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="36.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/report.png" />
+                <Image url="@../img/req1.png" />
             </image>
         </ImageView>
         <Button layoutX="-8.0" layoutY="609.0" mnemonicParsing="false" onAction="#btnLogoutOnAction" prefHeight="22.0" prefWidth="181.0" style="-fx-background-color: #5758BB;" text="     Logout" textFill="WHITE">
@@ -151,15 +100,15 @@
                 <Image url="@../img/logout.png" />
             </image>
         </ImageView>
-        <Button layoutX="-10.0" layoutY="362.0" mnemonicParsing="false" onAction="#btnAdminOnAction" prefHeight="22.0" prefWidth="183.0" style="-fx-background-color: #5758BB;" text="                         ADMIN MANAGE" textFill="WHITE">
-            <font>
-                <Font name="Corbel" size="12.0" />
-            </font>
-        </Button>
-        <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="34.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../img/dashboard(1).png" />
-            </image>
-        </ImageView>
+      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="32.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/storew.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="27.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/p2.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
