@@ -13,6 +13,7 @@ import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.swing.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,19 +26,52 @@ public class ReportFromController {
     @FXML
     private AnchorPane rootNode;
 
-
-
-
-
     @FXML
     void btnAnuwalDaReportOnAction(ActionEvent event) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("report/Report.jrxml")) {
+            if (inputStream == null) {
+                throw new RuntimeException("Report.jrxml file not found in the classpath");
+            }
 
+            JasperDesign jDesign = JRXmlLoader.load(inputStream);
+            JRDesignQuery query = new JRDesignQuery();
+            query.setText("SELECT orderid, Date, TotalPrise FROM paymentdetailsentity WHERE YEAR(date)=YEAR(CURDATE())");
+            jDesign.setQuery(query);
+
+            JasperReport compileReport = JasperCompileManager.compileReport(jDesign);
+            java.util.Map<String, Object> params = new java.util.HashMap<>();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, params, DbConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (IOException | JRException e) {
+            e.printStackTrace();  // Handle the IOException appropriately
+            throw new RuntimeException("Error loading Report.jrxml file: " + e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
-    void btnDailselReportOnAction(ActionEvent event) {
+    void btnDailselReportOnAction(ActionEvent event) throws JRException, SQLException {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("report/Report.jrxml")) {
+            if (inputStream == null) {
+                throw new RuntimeException("Report.jrxml file not found in the classpath");
+            }
 
+            JasperDesign jDesign = JRXmlLoader.load(inputStream);
+            JRDesignQuery query = new JRDesignQuery();
+            query.setText("SELECT orderid, Date, TotalPrise FROM paymentdetailsentity WHERE DAY(date)=DAY(CURDATE())");
+            jDesign.setQuery(query);
+
+            JasperReport compileReport = JasperCompileManager.compileReport(jDesign);
+            java.util.Map<String, Object> params = new java.util.HashMap<>();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, params, DbConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (IOException e) {
+            e.printStackTrace();  // Handle the IOException appropriately
+            throw new RuntimeException("Error loading Report.jrxml file: " + e.getMessage());
+        }
     }
+
 
     @FXML
     void btnLogoutOnAction(ActionEvent event) throws IOException {
@@ -112,6 +146,26 @@ public class ReportFromController {
     @FXML
     void btnmouthdaReportOnAction(ActionEvent event) {
 
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("report/Report.jrxml")) {
+            if (inputStream == null) {
+                throw new RuntimeException("Report.jrxml file not found in the classpath");
+            }
+
+            JasperDesign jDesign = JRXmlLoader.load(inputStream);
+            JRDesignQuery query = new JRDesignQuery();
+            query.setText("SELECT orderid, Date, TotalPrise FROM paymentdetailsentity WHERE MONTH(date)=MONTH(CURDATE())");
+            jDesign.setQuery(query);
+
+            JasperReport compileReport = JasperCompileManager.compileReport(jDesign);
+            java.util.Map<String, Object> params = new java.util.HashMap<>();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, params, DbConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (IOException | JRException e) {
+            e.printStackTrace();  // Handle the IOException appropriately
+            throw new RuntimeException("Error loading Report.jrxml file: " + e.getMessage());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

@@ -6,14 +6,21 @@ import Edu.icet.BO.custom.impl.orderdetalsboimpl;
 import Edu.icet.BO.custom.orderdetalsbo;
 import Edu.icet.DTO.OrderDto;
 import Edu.icet.DTO.item;
+import Edu.icet.db.DbConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import javax.mail.MessagingException;
+import java.io.File;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -100,9 +107,58 @@ public class OrderStatusFromControoler {
         String set = "close";
         bocall.updateByCompele(itemdto,set);
         bosetd.PayComplte(OrderId);
+        try{
+            // Generate and export the bill as a PDF
+            generateAndExportBill(OrderId);
 
+            // You can add any additional actions or UI updates here if needed
 
+            // Inform the user about the successful closure
+            statuslabel.setText("Order closed successfully");
+            statuslabel.setTextFill(Color.GREEN);
+        } catch (Exception e) {
+        // Handle exceptions appropriately
+        e.printStackTrace(); // You might want to log the exception or show an error message to the user
+    }
 
     }
+
+    private void generateAndExportBill(String orderId) {
+        try {
+            // Use the absolute path to load the JRXML file
+            String filePath = getClass().getClassLoader().getResource("report/Bill.jrxml").getFile();
+            JasperDesign jDesign = JRXmlLoader.load(new File(filePath));
+
+            JRDesignQuery query = new JRDesignQuery();
+            query.setText("SELECT *\n" +
+                    "FROM OrderEntityM\n" +
+                    "INNER JOIN CustomerEntity ON CustomerEntity.Contactnumber = OrderEntityM.phonenumber\n" +
+                    "INNER JOIN PaymentDetailsEntity ON PaymentDetailsEntity.orderid = OrderEntityM.OrderId\n" +
+                    "WHERE OrderEntityM.OrderId = '" + orderId + "';\n");
+            jDesign.setQuery(query);
+
+            JasperReport compileReport = JasperCompileManager.compileReport(jDesign);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport, null, DbConnection.getInstance().getConnection());
+
+            // Specify the absolute path for exporting the PDF file
+            String directoryPath = "D:\\Panadura\\EEServiseCenter\\bill\\";
+            String pdfFilePath = directoryPath + orderId + ".pdf";
+
+            // Create the directory if it doesn't exist
+            File directory = new File(directoryPath);
+            if (!directory.exists()) {
+                directory.mkdirs(); // Creates parent directories if they don't exist
+            }
+
+            JasperExportManager.exportReportToPdfFile(jasperPrint, pdfFilePath);
+            JasperViewer.viewReport(jasperPrint, false);
+
+        } catch (JRException | SQLException e) {
+            // Handle exceptions appropriately
+            e.printStackTrace(); // You might want to log the exception or show an error message to the user
+        }
+    }
+
+
 
 }
