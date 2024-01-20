@@ -5,8 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @Setter
@@ -14,8 +13,12 @@ import javax.persistence.Id;
 @ToString
 @Entity
 public class PaymentDetailsEntity {
+
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
     private String orderid;
     private String Date;
     private double TotalPrise ;

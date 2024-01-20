@@ -2,6 +2,8 @@ package Edu.icet.controller;
 
 import Edu.icet.BO.custom.Orderbo;
 import Edu.icet.BO.custom.impl.Orderboimpl;
+import Edu.icet.BO.custom.impl.orderdetalsboimpl;
+import Edu.icet.BO.custom.orderdetalsbo;
 import Edu.icet.DTO.OrderDto;
 import Edu.icet.DTO.item;
 import javafx.event.ActionEvent;
@@ -79,8 +81,11 @@ public class OrderStatusFromControoler {
             } else {
                 // Handle the case where Assigndate is null or empty
                 statuslabel.setText("Oder place today");
-                statuslabel.setTextFill(Color.PINK);
+                statuslabel.setTextFill(Color.RED);
             }
+        }else {
+            statuslabel.setText("Close order");
+            statuslabel.setTextFill(Color.RED);
         }
 
 
@@ -90,9 +95,13 @@ public class OrderStatusFromControoler {
         Orderbo bocall = new Orderboimpl();
         OrderDto itemdto = new OrderDto();
         String OrderId = txtOderid.getText();
+        orderdetalsbo bosetd = new orderdetalsboimpl();
         itemdto.setOrderId(OrderId);
         String set = "close";
         bocall.updateByCompele(itemdto,set);
+        bosetd.PayComplte(OrderId);
+
+
 
     }
 

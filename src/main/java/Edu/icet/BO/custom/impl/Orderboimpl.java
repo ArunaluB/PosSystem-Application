@@ -30,7 +30,8 @@ public class Orderboimpl implements Orderbo {
         } else if (completed.equals("close")) {
             entity.setStatus("Close");
         }
-      //  entity.setOrderidnatural(dto.getOrderId());
+
+
 
         return calledDao.update(entity) ;
 

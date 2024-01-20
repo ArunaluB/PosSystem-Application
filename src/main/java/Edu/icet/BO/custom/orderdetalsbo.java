@@ -13,7 +13,7 @@ public interface orderdetalsbo extends SuperBo {
     boolean saveOrder(orderdetailsDto dto) throws SQLException, ClassNotFoundException;
 
     public boolean SaveFinalBillDetails(BillFinalDetals dto) throws SQLException, ClassNotFoundException;
-    public boolean PayComplte(PayBillDto dto) throws SQLException, ClassNotFoundException;
+    public boolean PayComplte(String OrderId) throws SQLException, ClassNotFoundException;
 
 }
 

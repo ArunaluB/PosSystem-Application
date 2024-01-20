@@ -33,14 +33,11 @@ public class Orderdaoimpl implements Orderdao {
             Transaction transaction = session.beginTransaction();
 
             String orderId = ((OrderEntity) entity).getOrderId();
-            OrderEntity order = session.byNaturalId(OrderEntity.class).using("orderidnatural", orderId).load();
-
+            OrderEntity order = session.get(OrderEntity.class, orderId);
 
             if (order != null) {
                 // Update only if the order with the given orderId exists
-               // order.setStatus("Processing");
                 order.setStatus(((OrderEntity) entity).getStatus());
-
                 session.saveOrUpdate(order);
                 transaction.commit();
                 return true;
