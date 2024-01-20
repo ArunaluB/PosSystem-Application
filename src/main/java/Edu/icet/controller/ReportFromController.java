@@ -26,10 +26,6 @@ public class ReportFromController {
     @FXML
     private AnchorPane rootNode;
 
-
-
-
-
     @FXML
     void btnAnuwalDaReportOnAction(ActionEvent event) {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("report/Report.jrxml")) {
