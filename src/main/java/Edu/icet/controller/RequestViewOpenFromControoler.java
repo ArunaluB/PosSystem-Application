@@ -145,7 +145,7 @@ public class RequestViewOpenFromControoler  {
         System.out.println("Login Type: " + logintoinde);
 
         if(logintoinde.equals("Employee")){
-
+//
             // Close the current stage
             Stage currentStage = (Stage) rootNode.getScene().getWindow();
             currentStage.close();
@@ -168,9 +168,9 @@ public class RequestViewOpenFromControoler  {
             stage.setScene(scene);
             stage.centerOnScreen();
             stage.show();
-            // Close the current stage
-            Stage currentStage = (Stage) rootNode.getScene().getWindow();
-            currentStage.close();
+//            // Close the current stage
+//            Stage currentStage = (Stage) rootNode.getScene().getWindow();
+//            currentStage.close();
 
         }
     }

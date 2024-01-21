@@ -86,6 +86,11 @@ public class EmployeeDashboadFromControler implements Initializable {
         updateStage.setResizable(false);
         updateStage.show();
 
+
+        // You can close the current stage if needed
+        Stage currentStage = (Stage) rootNode.getScene().getWindow();
+        currentStage.close();
+
     }
 
     @FXML
@@ -136,7 +141,7 @@ public class EmployeeDashboadFromControler implements Initializable {
         Scene updateScene = new Scene(updateRoot);
 
         Stage updateStage = new Stage();
-        updateStage.setTitle("Request View");
+        updateStage.setTitle("Store");
         updateStage.setScene(updateScene);
         updateStage.setResizable(false);
         updateStage.show();

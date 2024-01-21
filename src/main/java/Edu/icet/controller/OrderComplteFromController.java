@@ -316,9 +316,9 @@ public class OrderComplteFromController {
             stage.setScene(scene);
             stage.centerOnScreen();
             stage.show();
-            // Close the current stage
-            Stage currentStage = (Stage) rootNode.getScene().getWindow();
-            currentStage.close();
+//            // Close the current stage
+//            Stage currentStage = (Stage) rootNode.getScene().getWindow();
+//            currentStage.close();
 
         }
     }
