@@ -64,6 +64,12 @@ public class ItemAddFormConrtoller {
             dtoobj.setPrise(prise);
             dtoobj.setImgsrc(imagePath);
             dtoobj.setType(Type);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("successful");
+            alert.setHeaderText("Item add Conform");
+            alert.setContentText(".");
+
+            alert.showAndWait();
         }catch (NumberFormatException e) {
 
             System.out.println("Invalid price input. Please enter a valid number.");

@@ -89,26 +89,26 @@ public class ItemFromControler implements Initializable{
 //
 //       // itemsnew.addAll(liveconnect);
        item itemobj;
-      for(int i=0;i<10;i++){
-           itemobj = new item();
-           itemobj.setProductname("kiwi");
-
-//          System.out.println(liveconnect.get(i).getImgsrc());
-           itemobj.setPrise(40);
-           itemobj.setImgsrc("/img/com.jpg");
-           itemobj.setColor("FFB605");
-           itemsnew.add(itemobj);
-
-       }
-      String p = "/img/PostMan.jpg";
-       itemobj = new item();
-       itemobj.setProductname("adarii");
-       itemobj.setPrise(40);
-       itemobj.setImgsrc(p);
-       System.out.println(p);
-       itemobj.setColor("1273de");
-       itemsnew.add(itemobj);
+//      for(int i=0;i<10;i++){
+//           itemobj = new item();
+//           itemobj.setProductname("kiwi");
 //
+////          System.out.println(liveconnect.get(i).getImgsrc());
+//           itemobj.setPrise(40);
+//           itemobj.setImgsrc("/img/com.jpg");
+//           itemobj.setColor("FFB605");
+//           itemsnew.add(itemobj);
+//
+//       }
+//      String p = "/img/PostMan.jpg";
+//       itemobj = new item();
+//       itemobj.setProductname("adarii");
+//       itemobj.setPrise(40);
+//       itemobj.setImgsrc(p);
+//       System.out.println(p);
+//       itemobj.setColor("1273de");
+//       itemsnew.add(itemobj);
+////
 
        for (int i = 0; i < liveconnect.size() ; i++) {
            itemobj =new item() ;
@@ -254,6 +254,8 @@ public class ItemFromControler implements Initializable{
         updateStage.show();
 
 
+
+
     }
 
     public void btnCustomerOnAction(ActionEvent actionEvent) {
@@ -303,6 +305,16 @@ public class ItemFromControler implements Initializable{
         newStage.setScene(scene);
         newStage.setResizable(false);
         newStage.show();
+
+        try {
+            Items.addAll(getData());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        // Reload and display the updated list of items
+
 //        Stage stage = (Stage) this.rootNode.getScene().getWindow();
 //        stage.setTitle("ItemAddFrom");
 //        stage.setScene(scene);
@@ -324,6 +336,8 @@ public class ItemFromControler implements Initializable{
         newStage.setScene(scene);
         newStage.setResizable(false);
         newStage.show();
+        // Reload and display the updated list of items
+
     }
 
     @FXML
@@ -435,4 +449,55 @@ public class ItemFromControler implements Initializable{
 
         System.out.println("New stage opened. Closing the old stage.");
     }
+
+    private void loadAndDisplayItems() {
+        try {
+            // Clear existing items
+            Items.clear();
+
+            // Load updated items
+            Items.addAll(getData());
+
+            // Display updated items
+            if (Items.size() > 0) {
+                setChosenFruit(Items.get(0));
+            }
+
+            // Clear the grid
+            grid.getChildren().clear();
+
+            // Add the updated items to the grid
+            int column = 0;
+            int row = 1;
+            for (int i = 0; i < Items.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/view/item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                itemcontrooler itemController = fxmlLoader.getController();
+                itemController.setData(Items.get(i), myListener);
+
+                if (column == 2) {
+                    column = 0;
+                    row++;
+                }
+
+                grid.add(anchorPane, column++, row);
+
+                // Set grid width and height
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (IOException | SQLException | ClassNotFoundException e) {
+            e.printStackTrace(); // Handle exception appropriately
+        }
+    }
+
 }
