@@ -262,6 +262,7 @@ public class OrderComplteFromController {
         String productName = comboItemName.getValue();
         itembo bo = new itemboimpl();
         item dto = bo.searchItemNameCheck(productName);
+        System.out.println("prise aka"+dto.getPrise());
         txtprise.setText(String.valueOf(dto.getPrise()));
     }
 

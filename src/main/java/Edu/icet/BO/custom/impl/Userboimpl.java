@@ -6,6 +6,7 @@ import Edu.icet.DAO.Custom.impl.Userdaoimpl;
 import Edu.icet.DAO.Util.SendMail;
 import Edu.icet.DTO.UserDto;
 import Edu.icet.Entity.UserEntity;
+import Edu.icet.controller.FogetEmailFromControler;
 import Edu.icet.controller.LoginFromController;
 import Edu.icet.controller.VerifyCodeFromControoler;
 import at.favre.lib.crypto.bcrypt.BCrypt;
@@ -84,20 +85,26 @@ public class Userboimpl implements userbo {
         System.out.println(hashpass);
         if(FrendEndHashpass.equals(hashpass)) {
             System.out.println("paword aka hari ");
+            LoginFromController obj = new LoginFromController();
+            if(Type.equals("Admin")){
+                System.out.println("admin");
+                UserType = "Admin";
+                obj.setdata(UserType);
+            } else {
+                System.out.println("user");
+                UserType = "Employee";
+                obj.setdata(UserType);
+            }
 
         } else {
             System.out.println("password aka waradiy");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Email Not Registered");
+            alert.setContentText("This Email is not registered. Please check your email address.");
+            alert.showAndWait();
         }
-        LoginFromController obj = new LoginFromController();
-         if(Type.equals("Admin")){
-             System.out.println("admin");
-             UserType = "Admin";
-             obj.setdata(UserType);
-         } else {
-             System.out.println("user");
-            UserType = "Employee";
-            obj.setdata(UserType);
-         }
+
 
     }
     public String getUserType(){
@@ -105,7 +112,7 @@ public class Userboimpl implements userbo {
     }
 
     @Override
-    public void searchUserEmailCheck(String userEmail) throws MessagingException {
+    public boolean searchUserEmailCheck(String userEmail) throws MessagingException, IOException {
         Email =usercalldao.getSearchByUsername(userEmail);
         System.out.println(Email);
         if (Email == null) {
@@ -114,13 +121,24 @@ public class Userboimpl implements userbo {
             alert.setHeaderText("Email Not Registered");
             alert.setContentText("This Email is not registered. Please check your email address.");
             alert.showAndWait();
+//            FogetEmailFromControler objc = new FogetEmailFromControler();
+//            objc.backlogin("yes");
+            return false;
+        } else if(Email != null)  {
+            random = new Random().nextInt(9000);
+           OTP = 1000+random;
+           System.out.println("" + OTP + "");
+           setOtp(OTP);
+            SendMail.outMail(""+OTP+"", Email, "E & E Servise Center Panadura");
+
         }
 
-        random = new Random().nextInt(9000);
-        OTP = 1000+random;
-        System.out.println("" + OTP + "");
-        setOtp(OTP);
-        SendMail.outMail(""+OTP+"", Email, "E & E Servise Center Panadura");
+//        random = new Random().nextInt(9000);
+//        OTP = 1000+random;
+//        System.out.println("" + OTP + "");
+//        setOtp(OTP);
+//        SendMail.outMail(""+OTP+"", Email, "E & E Servise Center Panadura");
+        return true;
 
     }
 
