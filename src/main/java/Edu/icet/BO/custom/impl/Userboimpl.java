@@ -55,12 +55,22 @@ public class Userboimpl implements userbo {
 
     @Override
     public boolean updateCustomer(String Email, String password) throws SQLException, ClassNotFoundException {
+        String usergetpassword = password;
+
+        if (usergetpassword.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")) {
+            System.out.println("password hari");
+        }
+
+        String Encrippassword = passwordHash(usergetpassword);
         UserEntity obj = new UserEntity();
+
         obj.setId((long)0);
         obj.setName("Namal");
         obj.setEmail(Email);
-        obj.setPassword(password);
-        obj.setType("Admin");
+
+        obj.setPassword(Encrippassword);
+
+        obj.setType("");
         return usercalldao.update(obj);
     }
 
@@ -136,7 +146,14 @@ public class Userboimpl implements userbo {
         if(isValidPassword(Npass)) {
             if(Npass.equals(CPass)) {
                 System.out.println("password 2 kama harii");
-                usercalldao.updatePasswordByUsername(Email,Npass);
+                String usergetpassword = Npass;
+
+                if (usergetpassword.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")) {
+                    System.out.println("password hari");
+                }
+
+                String Encrippassword = passwordHash(usergetpassword);
+                usercalldao.updatePasswordByUsername(Email,Encrippassword);
                 return true;
             }
         }

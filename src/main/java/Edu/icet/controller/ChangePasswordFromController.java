@@ -29,6 +29,7 @@ public class ChangePasswordFromController {
         if(usecalbo.validatepassword(New,renew)) {
             showAlert("Success", "Password is valid!");
 
+
             // Close the current stage
             Stage currentStage = (Stage) txtNewPassword.getScene().getWindow();
             currentStage.close();
