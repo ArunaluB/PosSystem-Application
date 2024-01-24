@@ -20,7 +20,7 @@
 
 Make sure you have the following installed before setting up the project:
 
-- Java Development Kit (JDK) 8 or higher
+- Java Development Kit (JDK) 17 or higher
 - MySQL or another relational database server
 - (Any other prerequisites specific to your project)
 
