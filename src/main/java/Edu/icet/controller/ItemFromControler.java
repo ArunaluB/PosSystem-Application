@@ -5,6 +5,7 @@ import Edu.icet.BO.custom.itembo;
 import Edu.icet.DTO.MyListener;
 import Edu.icet.DTO.item;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -185,6 +186,9 @@ public class ItemFromControler implements Initializable{
 
             GridPane.setMargin(anchorPane, new Insets(10));
         }
+        // Load and display items after the UI is initialized
+        Platform.runLater(() -> loadAndDisplayItems());
+
 
 
     }
@@ -253,34 +257,12 @@ public class ItemFromControler implements Initializable{
         updateStage.setResizable(false);
         updateStage.show();
 
-
+        loadAndDisplayItems();
 
 
     }
 
-    public void btnCustomerOnAction(ActionEvent actionEvent) {
-    }
 
-    public void btnDriverOnAction(ActionEvent actionEvent) {
-    }
-
-    public void btnCarOnAction(ActionEvent actionEvent) {
-    }
-
-    public void btnBookingOnAction(ActionEvent actionEvent) {
-    }
-
-    public void btnPaymentOnAction(ActionEvent actionEvent) {
-    }
-
-    public void btnSalaryOnAction(ActionEvent actionEvent) {
-    }
-
-    public void btnReportOnAction(ActionEvent actionEvent) {
-    }
-
-    public void btnAdminOnAction(ActionEvent actionEvent) {
-    }
 
     public void btnLogoutOnAction(ActionEvent actionEvent) throws IOException {
         // Close the current stage
@@ -306,6 +288,7 @@ public class ItemFromControler implements Initializable{
         newStage.setResizable(false);
         newStage.show();
 
+
         try {
             Items.addAll(getData());
         } catch (SQLException e) {
@@ -313,6 +296,7 @@ public class ItemFromControler implements Initializable{
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+      //  loadAndDisplayItems();
         // Reload and display the updated list of items
 
 //        Stage stage = (Stage) this.rootNode.getScene().getWindow();
@@ -451,52 +435,57 @@ public class ItemFromControler implements Initializable{
     }
 
     private void loadAndDisplayItems() {
+        Items.clear(); // Clear existing items
         try {
-            // Clear existing items
-            Items.clear();
-
-            // Load updated items
             Items.addAll(getData());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
-            // Display updated items
-            if (Items.size() > 0) {
-                setChosenFruit(Items.get(0));
-            }
-
-            // Clear the grid
-            grid.getChildren().clear();
-
-            // Add the updated items to the grid
-            int column = 0;
-            int row = 1;
-            for (int i = 0; i < Items.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/view/item.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
-
-                itemcontrooler itemController = fxmlLoader.getController();
-                itemController.setData(Items.get(i), myListener);
-
-                if (column == 2) {
-                    column = 0;
-                    row++;
+        if (Items.size() > 0) {
+            setChosenFruit(Items.get(0));
+            myListener = new MyListener() {
+                @Override
+                public void onClickListener(item item) {
+                    setChosenFruit(item);
                 }
 
-                grid.add(anchorPane, column++, row);
-
-                // Set grid width and height
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(anchorPane, new Insets(10));
+            };
+        }
+        int column = 0;
+        int row = 1;
+        for (int i = 0; i < Items.size(); i++) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/view/item.fxml"));
+            AnchorPane anchorPane = null;
+            try {
+                anchorPane = fxmlLoader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        } catch (IOException | SQLException | ClassNotFoundException e) {
-            e.printStackTrace(); // Handle exception appropriately
+
+            itemcontrooler itemcontrooler = fxmlLoader.getController();
+            itemcontrooler.setData(Items.get(i), myListener);
+
+            if (column == 2) {
+                column = 0;
+                row++;
+            }
+
+            grid.add(anchorPane, column++, row); //(child,column,row)
+            //set grid width
+            grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+            grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+            grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+            //set grid height
+            grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+            grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+            grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+            GridPane.setMargin(anchorPane, new Insets(10));
         }
     }
 

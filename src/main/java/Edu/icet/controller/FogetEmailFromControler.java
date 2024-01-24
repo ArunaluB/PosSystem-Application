@@ -24,17 +24,42 @@ public class FogetEmailFromControler {
     @FXML
     private TextField txtUserEmail;
 
+
     public void btnSendOTPOnAction(ActionEvent actionEvent) throws MessagingException, IOException {
         String userEmail = txtUserEmail.getText();
         userbo userbocall = new Userboimpl();
-        userbocall.searchUserEmailCheck(userEmail);
+       if((userbocall.searchUserEmailCheck(userEmail)==true)) {
+           System.out.println("mail aka awa ");
+
+           Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/VerifyCodeFrom.fxml"));
+           Scene scene = new Scene(rootNode);
+           Stage stage = (Stage) this.rootNode.getScene().getWindow();
+           stage.setScene(scene);
+           stage.centerOnScreen();
+           stage.show();
+        } else{
+           backlogin();
+       }
+//        System.out.println("mail aka awa ");
+//
+//        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/VerifyCodeFrom.fxml"));
+//        Scene scene = new Scene(rootNode);
+//        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+//        stage.setScene(scene);
+//        stage.centerOnScreen();
+//        stage.show();
+    }
+    public void backlogin() throws IOException {
+        System.out.println("awa");
         System.out.println("mail aka awa ");
 
-        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/VerifyCodeFrom.fxml"));
+        Parent rootNode = FXMLLoader.load(this.getClass().getResource("/view/LoginFrom.fxml"));
         Scene scene = new Scene(rootNode);
         Stage stage = (Stage) this.rootNode.getScene().getWindow();
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.show();
+
     }
+
 }

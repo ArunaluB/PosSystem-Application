@@ -16,7 +16,7 @@ public interface userbo extends SuperBo {
 
     void searchUser(String username, String password) throws IOException;
 
-    void searchUserEmailCheck(String userEmail) throws MessagingException;
+    boolean searchUserEmailCheck(String userEmail) throws MessagingException, IOException;
 
 
 
