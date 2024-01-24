@@ -35,6 +35,7 @@ public class FogetEmailFromControler {
            Scene scene = new Scene(rootNode);
            Stage stage = (Stage) this.rootNode.getScene().getWindow();
            stage.setScene(scene);
+           stage.setTitle("Reset Password");
            stage.centerOnScreen();
            stage.show();
         } else{
@@ -57,6 +58,7 @@ public class FogetEmailFromControler {
         Scene scene = new Scene(rootNode);
         Stage stage = (Stage) this.rootNode.getScene().getWindow();
         stage.setScene(scene);
+        stage.setTitle("Login");
         stage.centerOnScreen();
         stage.show();
 
