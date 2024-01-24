@@ -97,6 +97,7 @@ public class itemboimpl implements itembo {
         dto.setImgsrc(obj.getImgsrc());
         dto.setAvalable(obj.getAvalible());
         dto.setColor(obj.getColor());
+        dto.setPrise(obj.getPrise());
         System.out.println(obj);
         return dto;
     }

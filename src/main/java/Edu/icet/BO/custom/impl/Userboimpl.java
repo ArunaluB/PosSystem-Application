@@ -85,20 +85,26 @@ public class Userboimpl implements userbo {
         System.out.println(hashpass);
         if(FrendEndHashpass.equals(hashpass)) {
             System.out.println("paword aka hari ");
+            LoginFromController obj = new LoginFromController();
+            if(Type.equals("Admin")){
+                System.out.println("admin");
+                UserType = "Admin";
+                obj.setdata(UserType);
+            } else {
+                System.out.println("user");
+                UserType = "Employee";
+                obj.setdata(UserType);
+            }
 
         } else {
             System.out.println("password aka waradiy");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Email Not Registered");
+            alert.setContentText("This Email is not registered. Please check your email address.");
+            alert.showAndWait();
         }
-        LoginFromController obj = new LoginFromController();
-         if(Type.equals("Admin")){
-             System.out.println("admin");
-             UserType = "Admin";
-             obj.setdata(UserType);
-         } else {
-             System.out.println("user");
-            UserType = "Employee";
-            obj.setdata(UserType);
-         }
+
 
     }
     public String getUserType(){

@@ -101,7 +101,7 @@ public class ItemFromControler implements Initializable{
 //           itemsnew.add(itemobj);
 //
 //       }
-//      String p = "/img/PostMan.jpg";
+//       String p = "/img/PostMan.jpg";
 //       itemobj = new item();
 //       itemobj.setProductname("adarii");
 //       itemobj.setPrise(40);
