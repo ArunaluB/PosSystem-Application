@@ -98,6 +98,12 @@ public class Orderboimpl implements Orderbo {
     public OrderDto searchByOrderdetails(String itemname) throws MessagingException {
         OrderEntity Entity =calledDao.getOrderByOrderId(itemname);
         OrderDto dto = new OrderDto();
+        if(Entity == null){
+            dto.setOrderId("000000");
+            dto.setStatus("close");
+            return dto;
+        }
+       // OrderDto dto = new OrderDto();
         dto.setOrderId(Entity.getOrderId());
         dto.setName(Entity.getName());
         dto.setEmail(Entity.getEmail());

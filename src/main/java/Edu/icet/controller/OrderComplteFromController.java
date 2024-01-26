@@ -200,7 +200,7 @@ public class OrderComplteFromController {
         dto.setNote(txtdate.getText());
         String pass = "completed";
         bo.updateByCompele(dto, pass);
-        CompleteEmail.sendReceiptComplted(dto);
+        CompleteEmail.sendReceiptComplted(dto,serviceincludeBill);
 
         // final bill table
         BillFinalDetals billdto = new BillFinalDetals();

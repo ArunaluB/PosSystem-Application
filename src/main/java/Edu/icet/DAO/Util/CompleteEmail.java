@@ -8,7 +8,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class CompleteEmail {
-    private static void sendReceiptEmail(OrderDto dto) {
+    private static void sendReceiptEmail(OrderDto dto,double serviceincludeBill) {
         String username = "snanayakkara426@gmail.com"; // Add your Gmail address here
         String password = "srkxhlfhmtqerzdf"; // Add your Gmail password here
 
@@ -39,7 +39,7 @@ public class CompleteEmail {
                     .append("Email: ").append(dto.getEmail()).append("\n")
                     .append("Phone Number: ").append(dto.getPhonenumber()).append("\n")
                     .append("Date: ").append(dto.getDate()).append("\n")
-                    .append("Total Bill Calculate").append(dto.getType()).append("\n")
+                    .append("Total Bill Calculate: ").append(serviceincludeBill).append("\n")
                     .append("Note: ").append(dto.getNote()).append("\n")
                     .append("Status: ").append(dto.getStatus()).append("\n\n")
                     .append("Thank you for shopping with us!");
@@ -55,7 +55,7 @@ public class CompleteEmail {
         }
     }
 
-    public static void sendReceiptComplted(OrderDto dto){
-        sendReceiptEmail(dto);
+    public static void sendReceiptComplted(OrderDto dto,Double serviceincludeBill){
+        sendReceiptEmail(dto,serviceincludeBill);
     }
 }

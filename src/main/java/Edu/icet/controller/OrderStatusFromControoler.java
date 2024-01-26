@@ -56,7 +56,7 @@ public class OrderStatusFromControoler {
         String Assigndate = savedata.getDate();
         if(getstatus.equals("Processing")) {
             statuslabel.setText("Processing order");
-            statuslabel.setTextFill(Color.YELLOW);
+            statuslabel.setTextFill(Color.BLUE);
         } else if (getstatus.equals("completed")) {
             statuslabel.setText("completed this  order");
             statuslabel.setTextFill(Color.GREEN);
@@ -90,10 +90,14 @@ public class OrderStatusFromControoler {
                 statuslabel.setText("Oder place today");
                 statuslabel.setTextFill(Color.RED);
             }
-        }else {
+        }else if (getstatus == null || savedata.getOrderId() == null){
+            statuslabel.setText("Order Return ");
+            statuslabel.setTextFill(Color.MAROON);
+        } else{
             statuslabel.setText("Close order");
             statuslabel.setTextFill(Color.RED);
         }
+
 
 
     }
