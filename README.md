@@ -30,7 +30,8 @@ Make sure you have the following installed before setting up the project:
    ```bash
    https://github.com/ArunaluB/PosSystem-Application.git
    cd PosSystem-Application
-## Demo Video
+## Demo Video 
+ ```bash
 https://youtu.be/eU6E7-B1x5E
 
 
