@@ -32,6 +32,6 @@ Make sure you have the following installed before setting up the project:
    cd PosSystem-Application
 ## Demo Video 
  ```bash
-https://youtu.be/eU6E7-B1x5E
+https://youtu.be/2ozDw7TkH0k
 
 
