@@ -89,10 +89,10 @@ public class ChangePasswordFromController {
 
 
     private boolean isValidPassword(String password) {
-        // Password must be at least 8 characters long
-        String regex = "^.{8,}$";
+        // Password must be at least 8 characters long, including numbers, letters, and symbols
+        String regex = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=!]).{8,}$";
         Pattern pattern = Pattern.compile(regex);
-        return password.length() >= 8 && pattern.matcher(password).matches();
+        return pattern.matcher(password).matches();
     }
 
     private void clearFields() {

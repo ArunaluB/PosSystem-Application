@@ -98,6 +98,7 @@ public class EmployeeDashboadFromControler implements Initializable {
         // Close the current stage
         Stage currentStage = (Stage) rootNode.getScene().getWindow();
         currentStage.close();
+
         Parent updateRoot = FXMLLoader.load(getClass().getResource("/view/HomeFrom.fxml"));
         Scene updateScene = new Scene(updateRoot);
 
